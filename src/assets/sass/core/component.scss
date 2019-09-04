@@ -1,0 +1,50 @@
+/**
+* 通用组件外观样式
+*/
+// 一级路由页面，为页面
+.app-view {
+  // height: 100%;
+  min-height: calc(100vh - 360px);
+}
+
+.main-header {
+  background-color: #fff;
+}
+
+// 二级路由 app 页面 为组件
+.component {
+  background-color: #fff;
+  margin: 0px auto;
+  &-head {
+    .el-input {width: 180px; vertical-align: middle;}
+  }
+  &-controls {
+    padding: 0 0 10px;
+    .el-input {width: 180px; vertical-align: middle;}
+  }
+  &-seprate {
+    width: 100%;
+    margin: 0 -20px;
+    padding: 0 20px 10px;
+    border-top: 1px solid #f3f3f3;
+  }
+  &-seprate--inner {
+    width: 100%;
+    border-top: 1px solid #f3f3f3;
+  }
+}
+
+// 颜色配置
+.color-down, .color-succ {
+  color: #30c675;
+}
+.color-up, .color-fail {
+  color: #e7505a;
+}
+
+.app {
+  height: 100%;
+}
+.bg_static {
+  min-height: calc(100vh - 295px);
+}

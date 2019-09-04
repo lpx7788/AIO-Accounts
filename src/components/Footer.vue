@@ -1,22 +1,20 @@
 <template>
   <footer class="footer-container">
-    <nav>
-      <router-link v-for="nav in data" :key="nav.id" :to="nav.path" exact>
+    2342423
+    <!-- <nav> -->
+      <!-- <router-link v-for="nav in data" :key="nav.id" :to="nav.path" exact>
         <icon :name="nav.icon"></icon>
         <p>{{ nav.name }}</p>
-      </router-link>
-    </nav>
+      </router-link> -->
+    <!-- </nav> -->
   </footer>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-
-@Component
-export default class Footer extends Vue {
-  data(){
-    return{
-       nav: [
+<script>
+  export default {
+    data () {
+      return {
+            nav: [
     {
       id: 1,
       icon: 'home',
@@ -40,11 +38,15 @@ export default class Footer extends Vue {
       icon: 'me',
       name: '我',
       path: '/me',
+    },]
+      }
     },
-  ],
-    }
+    methods: {
+    },
+    mounted () {}
+
   }
-}
+
 </script>
 
 <style scoped lang="scss">

@@ -13,16 +13,8 @@ export default new Router({
         title: '聚点商城',
         keepAlive: true,
       },
+     
       component: resolve => require(['../views/Home/index'],resolve)
-    },
-    {
-      path: '/infoList',
-      name: 'infoList',
-      meta: {
-        title: '要闻',
-        keepAlive: true,
-      },
-      component: resolve => require(['../views/Info/infoList'],resolve)
-    },
+    }
   ]
 })

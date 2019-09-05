@@ -6,13 +6,13 @@
     聚点商城H5项目(AIO-H5-v2.0)
 
 ### 说明
-　　聚点商城H5项目
-　　git: git clone http://112.74.42.194:8099/ZhongKa/AIO-H5.git
+　　聚点商城微信公众号
+　　git:  XX
 
 ### 相关技术：
 
 	1. vuejs(2.3.3)：一套构建用户界面的渐进式框架，易用、灵活、高效。
-	2. element-ui(2.3.2)：一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的组件库。
+    2. ui: vant  https://youzan.github.io/vant/#/zh-CN/tabbar
 	3. vue-router(2.7.0)：官方的路由组件，配合vue.js创建单页应用（SPA）非常简单。
 	4. axios(2.6.0): 基于 Promise 的 HTTP 请求客户端，可同时在浏览器和 node.js 中使用。
 	5. webpack,项目模板
@@ -20,7 +20,7 @@
 ### 相关技术文档地址
 
 	1. vuejs: https://cn.vuejs.org/
-	2. element-ui: http://element.eleme.io/#/zh-CN/component/quickstart
+	2. vant:  https://youzan.github.io/vant/#/zh-CN/tabbar
 	3. vue-router: https://router.vuejs.org/zh-cn/
 	4. axios: https://www.npmjs.com/package/axios,https://www.kancloud.cn/yunye/axios/234845
 	5. mock.js: http://mockjs.com/
@@ -41,12 +41,8 @@
     │   ├── router                 // 路由
     │   ├── utils                  // 全局公用方法
     │   ├── views                  // vue文件页面目录
-    |   |   ├──Account             // 期货开户目录
-    |   |   ├──Download            // 首页二维码下载目录
-    |   |   ├──Enterprise          // 企业报表目录
-    |   |   ├──Info                // 资讯目录
-    |   |   ├──Secrecy             // 隐私申明目录
-    |   |   ├──sqPay               // 双乾支付目录
+    |   |   ├──Home                //首页
+    |   |                // 双乾支付目录
     │   ├── App.vue                // 入口页面
     │   └── main.js                // 入口 加载组件 初始化等
     ├── static                     // 第三方不打包资源

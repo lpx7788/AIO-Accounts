@@ -1,12 +1,12 @@
 <template>
   <footer class="footer-container">
-    2342423
-    <!-- <nav> -->
-      <!-- <router-link v-for="nav in data" :key="nav.id" :to="nav.path" exact>
-        <icon :name="nav.icon"></icon>
+
+    <nav>
+       <router-link v-for="nav in navData" :key="nav.id" :to="nav.path" exact> 
+        <!-- <icon :name="nav.icon"></icon> -->
         <p>{{ nav.name }}</p>
-      </router-link> -->
-    <!-- </nav> -->
+      </router-link> 
+    </nav> 
   </footer>
 </template>
 
@@ -14,7 +14,7 @@
   export default {
     data () {
       return {
-            nav: [
+            navData: [
     {
       id: 1,
       icon: 'home',
@@ -23,18 +23,6 @@
     },
     {
       id: 2,
-      icon: 'categrory',
-      name: '分类',
-      path: '/category',
-    },
-    {
-      id: 3,
-      icon: 'cart',
-      name: '购物车',
-      path: '/cart',
-    },
-    {
-      id: 4,
       icon: 'me',
       name: '我',
       path: '/me',
@@ -51,46 +39,6 @@
 
 <style scoped lang="scss">
 .footer-container {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  z-index: 1001;
-  background-color: #ffffff;
-  border-top: 1px solid #e7e7e7;
-  border-bottom: 1px solid #f8f8f8;
-  padding: 0 40px;
-  padding-top: 4px;
-  box-shadow: 0 0 5px 0 hsla(0, 6%, 78%, 0.3);
-
-  nav {
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-
-    a {
-      font-size: 24px;
-      color: #333;
-      padding: 10px 0;
-
-      svg {
-        font-size: 38px;
-      }
-
-      p {
-        margin-top: 10px;
-      }
-    }
-  }
-
-  .router-link-active {
-    svg,
-    p {
-      color: red;
-    }
-  }
+ 
 }
 </style>

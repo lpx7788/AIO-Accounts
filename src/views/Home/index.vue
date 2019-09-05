@@ -1,19 +1,24 @@
 <template>
   <div class="homePage">
     我是首页
-    <Footer></Footer>
+    <Food></Food>
   </div>
   
 </template>
 
 <script>
-import Footer from '../../../src/components/Footer.vue';
+import Food  from '@/components/Footer';
+
   export default {
+    components: {
+      Food,
+    },
     data () {
       return {
        
       }
     },
+    
     methods: {
     },
     mounted () {}

@@ -3,9 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/'
-import ElementUI from 'element-ui'
-import Mint from 'mint-ui'
-import 'mint-ui/lib/style.css'
+// import ElementUI from 'element-ui'
+// import Mint from 'mint-ui'
+// import 'mint-ui/lib/style.css'
 import {httpClient} from '@/utils/httpClient'
 import {projectConfig} from '@/utils/projectConfig'
 import echarts from 'echarts'
@@ -14,8 +14,8 @@ import 'vant/lib/index.css';
 import './utils/rem'
 let Base64 = require('js-base64').Base64;
 
-Vue.use(ElementUI, {size: 'small'})
-Vue.use(Mint)
+// Vue.use(ElementUI, {size: 'small'})
+// Vue.use(Mint)
 Vue.prototype.httpClient = httpClient
 Vue.prototype.projectConfig = projectConfig
 Vue.config.productionTip = false

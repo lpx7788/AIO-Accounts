@@ -16,6 +16,8 @@
 	3. vue-router(2.7.0)：官方的路由组件，配合vue.js创建单页应用（SPA）非常简单。
 	4. axios(2.6.0): 基于 Promise 的 HTTP 请求客户端，可同时在浏览器和 node.js 中使用。
 	5. webpack,项目模板
+    6.postcss-pxtorem:px转rem 插件会转化所有的样式的px(比例1:1)。注意引入了三方UI，也会被转化。可以使用selectorBlackList字段来过滤。
+如果个别地方不想转化px。可以简单的使用大写的 PX 或 Px 。
 
 ### 相关技术文档地址
 
@@ -38,11 +40,11 @@
     ├── config                     // 配置相关
     ├── src                        // 源代码
     │   ├── assets                 // 主题 字体 样式等静态资源
+    │   ├── components             // 公共组件
     │   ├── router                 // 路由
     │   ├── utils                  // 全局公用方法
     │   ├── views                  // vue文件页面目录
-    |   |   ├──Home                //首页
-    |   |                // 双乾支付目录
+    |   |   ├──Home                //首页       
     │   ├── App.vue                // 入口页面
     │   └── main.js                // 入口 加载组件 初始化等
     ├── static                     // 第三方不打包资源

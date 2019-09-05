@@ -8,7 +8,7 @@ import router from './router/'
 // import 'mint-ui/lib/style.css'
 import {httpClient} from '@/utils/httpClient'
 import {projectConfig} from '@/utils/projectConfig'
-import echarts from 'echarts'
+// import echarts from 'echarts'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import './utils/rem'
@@ -19,7 +19,7 @@ let Base64 = require('js-base64').Base64;
 Vue.prototype.httpClient = httpClient
 Vue.prototype.projectConfig = projectConfig
 Vue.config.productionTip = false
-Vue.use(echarts)
+// Vue.use(echarts)
 Vue.use(Vant)
 
 router.beforeEach((to, from, next) => {

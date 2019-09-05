@@ -1,7 +1,7 @@
 import axios from 'axios'
 // 遮罩层组件
 // 消息通知组件
-import {Notification} from 'element-ui'
+// import {Notification} from 'element-ui'
 import {projectConfig} from '@/utils/projectConfig'
 // 数据加载条显示组件
 
@@ -44,18 +44,18 @@ service.interceptors.response.use(
     let res = response.data
 
     if (res.errorCode === projectConfig.RESPONSE_CODE_ERROR_SERVER_ERROR) {
-      Notification.warning({
-        title: '警告',
-        message: res.errorMsg
-      })
+      // Notification.warning({
+      //   title: '警告',
+      //   message: res.errorMsg
+      // })
     } else {
       // 业务处理成功信息 success
       // 200 正常
       const _message = res.errorMsg
       if (res.errorCode !== projectConfig.RESPONSE_CODE_SUCESS && _message !== '') {
-        Notification.error({
-          message: _message
-        })
+        // Notification.error({
+        //   message: _message
+        // })
       }
       return response.data
     }
@@ -63,10 +63,10 @@ service.interceptors.response.use(
     // 全局返回状态码拦截.end
   },
   error => {
-    Notification.error({
-      title: '错误',
-      message: error.message
-    })
+    // Notification.error({
+    //   title: '错误',
+    //   message: error.message
+    // })
 
     return Promise.reject(error)
   }

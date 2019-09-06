@@ -13,8 +13,16 @@ export default new Router({
         title: '聚点商城',
         keepAlive: true,
       },
-     
       component: resolve => require(['../views/Home/index'],resolve)
+    },
+    {
+      path: '/mine',
+      name: 'mine',
+      meta: {
+        title: '聚点商城',
+        keepAlive: false,
+      },
+      component: resolve => require(['../views/Mine/index'],resolve)
     }
   ]
 })

@@ -1,14 +1,16 @@
 <template>
   <footer class="footer-container">
     <nav>
-      <van-tabbar  v-model="tab_active" :fixed="false">
-        <van-tabbar-item v-for="nav in navData" :to="nav.path" :key="nav.id">
-          <span class="nav_name">{{nav.name}}</span>
-          <img
+      <van-tabbar route>
+        <van-tabbar-item  v-for="nav in navData"  :to="nav.path" :key="nav.id"
+          replace
+        >
+          {{nav.name}}
+        <img
             slot="icon"
             slot-scope="props"
-            :src="tab_active==nav.id?nav.icon.active:nav.icon.normal"
-          >
+            :src="tab_active==nav.path?nav.icon.active:nav.icon.normal"
+        >
         </van-tabbar-item>
       </van-tabbar>
     </nav>
@@ -19,7 +21,7 @@
   export default {
     data () {
       return {
-        tab_active: 0,
+        tab_active: '/',
         
         navData: [
           {
@@ -45,6 +47,11 @@
     },
     methods: {
 
+    },
+    created(){
+       console.log(this.$route.path)
+       this.tab_active = this.$route.path
+       
     },
     mounted () {
 

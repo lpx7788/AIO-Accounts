@@ -1,6 +1,13 @@
 <template>
   <div class="homePage">
-      我的
+
+    <div class="homePage_body">
+      <p class="referral_code ">
+        <span>推荐码</span>
+        <span>Q763</span>
+      </p>
+      <van-button class="recommend_btn"  type="info" size="large">大号按钮</van-button>
+    </div>
   </div>
   
 </template>
@@ -25,6 +32,17 @@ import Foot  from '@/components/Footer';
   }
 </script>
 
-<style lang="scss" scoped>
-
+<style  lang="less" scoped>
+.homePage{
+  .homePage_body{
+    display: flex;
+    justify-content: center;
+    
+    .recommend_btn{
+        height: 88px;
+        width: 520px;
+      }
+  }
+ 
+}
 </style>

@@ -27,29 +27,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  @import '~@/assets/sass/core/index';
-
-  .el-table__fixed-header-wrapper {
-
-    .cell {
-      text-align: center;
-    }
-  }
-
-  .el-table__header-wrapper {
-
-    .cell {
-      text-align: center;
-    }
-  }
-
-  .el-table__row {
-
-    .cell {
-      text-align: center;
-    }
-  }
+<style lang="less">
 
   html, body {
     background-color: #fff;

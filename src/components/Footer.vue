@@ -1,9 +1,9 @@
 <template>
   <footer class="footer-container">
     <nav>
-      <van-tabbar v-model="tab_active" :fixed="false">
+      <van-tabbar  v-model="tab_active" :fixed="false">
         <van-tabbar-item v-for="nav in navData" :to="nav.path" :key="nav.id">
-          <span>{{nav.name}}</span>
+          <span class="nav_name">{{nav.name}}</span>
           <img
             slot="icon"
             slot-scope="props"
@@ -20,6 +20,7 @@
     data () {
       return {
         tab_active: 0,
+        
         navData: [
           {
             id: 'home',
@@ -52,8 +53,14 @@
 
 </script>
 
-<style scoped lang="scss">
+<style scoped  lang="less">
 .footer-container {
- 
+ .nav_name{
+   font-size: 28px;
+ }
+ img{
+   height: 40px;
+   width: 40px;
+ }
 }
 </style>

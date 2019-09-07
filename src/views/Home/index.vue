@@ -1,6 +1,6 @@
 <template>
   <div class="homePage">
-     <button @click="test">24234234</button>
+   
     <van-pull-refresh class="content_body" v-model="isLoading" @refresh="onRefresh">
       <van-swipe :autoplay="2000" indicator-color="white">
           <van-swipe-item v-for="(image, index) in carousel_images" :key="index">
@@ -46,11 +46,11 @@
         hotList: [],// 热门推荐列表
       }
     },
-  
+      mounted () {
+      this.getPageList()
+    },
     methods: {
-      test(){
-        this.$router.push('./Mine')
-      },
+ 
       onRefresh() {
         setTimeout(() => {
           this.$toast('刷新成功');
@@ -69,8 +69,21 @@
           }
         },500)
       },
+       getPageList () {
+        const param = {
+          type: '1',
+          pageNum: 1,
+          pageSize: 10,
+        }
+        console.log(this.projectConfig);
+        console.log(this.projectConfig.REQUEST_URL_INFO_LIST_QUERY, param);
+        this.httpClient.requestPost(this.projectConfig.REQUEST_URL_INFO_LIST_QUERY, param)
+          .then(res => {
+            console.log(res)
+          })
+      },
     },
-    mounted () {}
+
 
   }
 </script>

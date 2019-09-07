@@ -14,16 +14,16 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(config => {
   // 获得请求的URL何请求的方法
-  const requestUrl = config.url
+  // const requestUrl = config.url
 
   // 请求url上面加上时间戳
-  if (requestUrl.indexOf('?') === -1 && requestUrl.lastIndexOf('&') === -1) {
-    config.url = requestUrl + '?timestamp=' + new Date().getTime()
-  } else if (requestUrl.lastIndexOf('&') !== -1) {
-    config.url = requestUrl + 'timestamp=' + new Date().getTime()
-  } else {
-    config.url = requestUrl + '&timestamp=+' + new Date().getTime()
-  }
+  // if (requestUrl.indexOf('?') === -1 && requestUrl.lastIndexOf('&') === -1) {
+  //   config.url = requestUrl + '?timestamp=' + new Date().getTime()
+  // } else if (requestUrl.lastIndexOf('&') !== -1) {
+  //   config.url = requestUrl + 'timestamp=' + new Date().getTime()
+  // } else {s
+  //   config.url = requestUrl + '&timestamp=+' + new Date().getTime()
+  // }
 
   return config
 }, error => {

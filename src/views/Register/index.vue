@@ -38,7 +38,7 @@
         />
         </van-cell-group>
       </div>
-      <div class="register_btn"> <van-button class="comfirm_btn"  type="info" size="large">确认提交</van-button></div>
+      <div class="register_btn"  @click="comfirmClick"> <van-button class="comfirm_btn"  type="info" size="large">确认提交</van-button></div>
     </div>
   </div>
 </template>
@@ -54,7 +54,14 @@ export default {
     };
   },
 
-  mounted() {}
+  mounted() {},
+  methods:{
+    comfirmClick(){
+      this.$router.push('/')
+      localStorage.setItem('token','22')
+    }
+
+  }
 };
 </script>
 

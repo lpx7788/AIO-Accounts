@@ -1,5 +1,6 @@
 <template>
   <div class="homePage">
+     <button @click="test">24234234</button>
     <van-pull-refresh class="content_body" v-model="isLoading" @refresh="onRefresh">
       <van-swipe :autoplay="2000" indicator-color="white">
           <van-swipe-item v-for="(image, index) in carousel_images" :key="index">
@@ -17,6 +18,7 @@
           </div>
         </van-list>
       </section>
+     
     </van-pull-refresh>
     <div class="footer">
       <Foot></Foot>
@@ -46,6 +48,9 @@
     },
   
     methods: {
+      test(){
+        this.$router.push('./Mine')
+      },
       onRefresh() {
         setTimeout(() => {
           this.$toast('刷新成功');

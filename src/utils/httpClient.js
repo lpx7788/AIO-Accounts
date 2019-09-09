@@ -10,7 +10,7 @@ class httpClient {
    * @param {*} param 参数
    * @return 请求结果
    */
-  static requestPost (postUrl, param) {
+  static request (postUrl, param,method) {
     let headers = {}
     headers['X-Requested-With'] = 'XMLHttpRequest'
     if (param.token !== undefined) {
@@ -19,7 +19,7 @@ class httpClient {
     return new Promise((resolve, reject) => {
       fetch({
         url: postUrl,
-        method: 'post',
+        method: method?method:'post',
         data: param,
         headers: headers
       }).then(response => {

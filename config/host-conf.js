@@ -15,24 +15,45 @@ const ENV_LIST = [
   {
     envName: 'dev',
     dirName: 'dev',
-    apiHostName: 'http://192.168.0.230:8080/',
+    apiHostName: 'http://zndh9x.natappfree.cc/',
     assetHostName:'',
-    projectHostName: 'http://192.168.0.230:7001/'
+    projectHostName: 'http://zndh9x.natappfree.cc/'
   },
   {
     envName: 'test',
     dirName: 'test',
-    apiHostName: 'http://192.168.0.230:8080/',
+    apiHostName: 'http://zndh9x.natappfree.cc/',
     assetHostName: '',
-    projectHostName: 'http://192.168.0.230:7001/'
+    projectHostName: 'http://zndh9x.natappfree.cc/'
   },
   {
     envName: 'prod',
     dirName: 'prod',
-    apiHostName: 'https://aio.manytrader.net/',
+    apiHostName: 'http://zndh9x.natappfree.cc/',
     assetHostName:'',
-    projectHostName: 'https://h5.manytrader.net/'
+    projectHostName: 'http://zndh9x.natappfree.cc/'
   }
+  // {
+  //   envName: 'dev',
+  //   dirName: 'dev',
+  //   apiHostName: 'http://192.168.0.230:8080/',
+  //   assetHostName:'',
+  //   projectHostName: 'http://192.168.0.230:7001/'
+  // },
+  // {
+  //   envName: 'test',
+  //   dirName: 'test',
+  //   apiHostName: 'http://192.168.0.230:8080/',
+  //   assetHostName: '',
+  //   projectHostName: 'http://192.168.0.230:7001/'
+  // },
+  // {
+  //   envName: 'prod',
+  //   dirName: 'prod',
+  //   apiHostName: 'https://aio.manytrader.net/',
+  //   assetHostName:'',
+  //   projectHostName: 'https://h5.manytrader.net/'
+  // }
 ]
 
 const HOST_ENV = process.env.HOST_ENV

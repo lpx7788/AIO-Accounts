@@ -73,10 +73,10 @@
         const param = {
   
         }
-        this.httpClient.requestPost(this.projectConfig.REQUEST_URL_INFO_LIST_QUERY, param)
-          .then(res => {
+        // this.httpClient.requestPost(this.projectConfig.REQUEST_URL_INFO_LIST_QUERY, param)
+        //   .then(res => {
 
-          })
+        //   })
       },
     },
 

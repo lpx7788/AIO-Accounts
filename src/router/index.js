@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import getWxLogin from '../utils/authorization'
+import {projectConfig} from '@/utils/projectConfig'
 
 Vue.use(Router)
-
 
 const router = new Router({
   mode: 'history',
@@ -44,15 +45,17 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
 
   if(to.meta.requireArth){
-    var token = window.localStorage.getItem('token');//获取浏览器缓存的用户信息
-    if(token){ //如果有就直接到首页咯
+    var token = window.localStorage.getItem('token');
+    if(token){ 
         next();
     } else {
-        if(to.path=='/register'){ //如果是登录页面路径，就直接next()
-            next();
-        } else { //不然就跳转到登录；
-            next('/register');
-        }
+      console.log();
+      getWxLogin.request(projectConfig.WECHAT_LOGIN,'','get')
+        // if(to.path=='/register'){ //如果是登录页面路径，就直接next()
+        //     next();
+        // } else { //不然就跳转到登录；
+        //     next('/register');
+        // }
     }
   }else{
     next()

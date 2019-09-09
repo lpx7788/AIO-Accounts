@@ -45,6 +45,8 @@
     │   ├── utils                  // 全局公用方法
     │   ├── views                  // vue文件页面目录
     |   |   ├──Home                //首页       
+    |   |   ├──MIne                //我的       
+    |   |   ├──Register            //注册       
     │   ├── App.vue                // 入口页面
     │   └── main.js                // 入口 加载组件 初始化等
     ├── static                     // 第三方不打包资源

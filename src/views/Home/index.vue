@@ -5,7 +5,6 @@
       <van-swipe :autoplay="2000" indicator-color="white">
           <van-swipe-item v-for="(image, index) in carousel_images" :key="index" >
             <van-image class="swipe-img" fit="cover" :src="image" />
-            <!-- <div style="width:100%;height:100%;background:url(https://shopstatic.vivo.com.cn/vivoshop/commodity/20180430/20180430232146894398_original.jpg) 50% center;backgroundSize: cover;"></div> -->
           </van-swipe-item>
       </van-swipe>
       <section class="content_list">
@@ -72,9 +71,7 @@
       },
        getPageList () {
         const param = {
-          type: '1',
-          pageNum: 1,
-          pageSize: 10,
+         
         }
         console.log(this.projectConfig);
         console.log(this.projectConfig.REQUEST_URL_INFO_LIST_QUERY, param);
@@ -142,7 +139,7 @@
             font-size: 42px;
             color: #f6543f;
             margin-right: 21px;
-            font-weight: bold;
+            font-weight: he;
           }
           .yield{
             font-size: 24px;

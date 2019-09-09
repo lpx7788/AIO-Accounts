@@ -13,7 +13,7 @@ class projectConfig {
   static API_HOST_NAME = process.env.HOST_NAME;
 
  // 资讯列表查询
- static REQUEST_URL_INFO_LIST_QUERY = 'industryInformation/query';
+ static REQUEST_URL_INFO_LIST_QUERY = 'category/tree';
 
 }
 

@@ -41,10 +41,13 @@ import Foot  from '@/components/Footer';
 
 <style  lang="less" scoped>
 .minePage{
-  .minePage_body{
-    display: flex;
-    
+  display: flex;
     flex-direction: column;
+    height: 100%;
+
+  .minePage_body{
+
+    flex: 1;
     align-items: center;
     justify-content: center;
     .minePage_user{
@@ -66,6 +69,7 @@ import Foot  from '@/components/Footer';
     }
     .minePage_referral{
        font-size: 32px;
+       text-align: center;
  
     .code_text{
         color: #666;

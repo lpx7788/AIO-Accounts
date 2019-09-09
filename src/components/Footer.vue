@@ -1,12 +1,13 @@
 <template>
   <footer class="footer-container">
     <nav>
-      <van-tabbar route>
+      <van-tabbar route :fixed ="false">
         <van-tabbar-item  v-for="nav in navData"  :to="nav.path" :key="nav.id"
           replace
         >
           {{nav.name}}
         <img
+          
             slot="icon"
             slot-scope="props"
             :src="tab_active==nav.path?nav.icon.active:nav.icon.normal"

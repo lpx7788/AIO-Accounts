@@ -27,8 +27,8 @@
           {
             id: 'home',
             icon: {
-              normal: 'https://b.yzcdn.cn/vant/icon-demo-1126.png',
-              active: 'https://b.yzcdn.cn/vant/icon-demo-1126.png'
+              normal: 'https://aio.manytrader.net/preViewUploadFile/images/icon-home.png',
+              active: 'https://aio.manytrader.net/preViewUploadFile/images/icon-home-active.png'
             },
             name: '首页',
             path: '/',
@@ -36,8 +36,8 @@
           {
             id: 'mine',
             icon: {
-              normal: 'https://b.yzcdn.cn/vant/icon-demo-1126.png',
-              active: 'https://b.yzcdn.cn/vant/icon-demo-1126.png'
+              normal: 'https://aio.manytrader.net/preViewUploadFile/images/icon-mine.png',
+              active: 'https://aio.manytrader.net/preViewUploadFile/images/icon-mine-active.png'
             },
             name: '我',
             path: '/mine',
@@ -62,12 +62,9 @@
 
 <style scoped  lang="less">
 .footer-container {
- .nav_name{
-   font-size: 28px;
- }
  img{
-   height: 40px;
-   width: 40px;
+   height:27PX;
+   width:27PX;
  }
 }
 </style>

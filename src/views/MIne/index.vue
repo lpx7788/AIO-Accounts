@@ -65,10 +65,10 @@ import Foot  from '@/components/Footer';
       }
     }
     .minePage_referral{
+       font-size: 32px;
  
     .code_text{
         color: #666;
-        font-size: 32px;
       }
     }
 
@@ -80,6 +80,7 @@ import Foot  from '@/components/Footer';
         height: 88px;
         line-height: 88px;
         width: 520px;
+        font-size: 32px;
       }
     }
     

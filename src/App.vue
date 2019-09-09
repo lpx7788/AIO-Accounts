@@ -28,9 +28,11 @@ export default {
 </script>
 
 <style lang="less">
-
+  @import '~@/assets/less/core/index';
   html, body {
+    box-sizing: border-box;
     background-color: #fff;
+    color: #222222;
   }
   #app{
     height: 100%;

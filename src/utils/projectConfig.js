@@ -12,8 +12,8 @@ class projectConfig {
   static PROJECT_HOST_NAME = process.env.PROJECT_HOST_NAME;
   static API_HOST_NAME = process.env.HOST_NAME;
 
-
-
+ // 资讯列表查询
+ static REQUEST_URL_INFO_LIST_QUERY = 'industryInformation/query';
 
 }
 

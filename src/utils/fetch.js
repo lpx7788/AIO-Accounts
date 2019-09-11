@@ -41,24 +41,24 @@ service.interceptors.response.use(
       return response.data
     }
 
-    let res = response.data
+    // let res = response.data
 
-    if (res.errorCode === projectConfig.RESPONSE_CODE_ERROR_SERVER_ERROR) {
+    // if (res.errorCode === projectConfig.RESPONSE_CODE_ERROR_SERVER_ERROR) {
       // Notification.warning({
       //   title: '警告',
       //   message: res.errorMsg
       // })
-    } else {
+    // } else {
       // 业务处理成功信息 success
       // 200 正常
-      const _message = res.errorMsg
-      if (res.errorCode !== projectConfig.RESPONSE_CODE_SUCESS && _message !== '') {
+      // const _message = res.errorMsg
+      // if (res.errorCode !== projectConfig.RESPONSE_CODE_SUCESS && _message !== '') {
         // Notification.error({
         //   message: _message
         // })
-      }
-      return response.data
-    }
+      // }
+      // return response.data
+    // }
 
     // 全局返回状态码拦截.end
   },

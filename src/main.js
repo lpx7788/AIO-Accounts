@@ -5,7 +5,9 @@ import App from './App'
 import router from './router/'
 import {httpClient} from '@/utils/httpClient'
 import {projectConfig} from '@/utils/projectConfig'
-
+import commonJs   from '@/utils/common'    
+import sdk from '@/utils/sdk'
+ 
 
 import Vant from 'vant';
 import 'vant/lib/index.css';
@@ -13,7 +15,8 @@ import './utils/rem'
 let Base64 = require('js-base64').Base64;
 
 // authorization.service.getWxLogin
-
+Vue.prototype.commonJs=commonJs   //注册全局方法
+Vue.prototype.sdk=sdk   //注册全局方法
 Vue.prototype.httpClient = httpClient
 Vue.prototype.projectConfig = projectConfig
 Vue.config.productionTip = false

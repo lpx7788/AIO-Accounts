@@ -39,31 +39,36 @@ const router = new Router({
         requireArth: false
       },
       component: resolve => require(['../views/Register/index'],resolve)
+    },
+    {
+      path: '/login',
+      name: 'login',
+      meta: {
+        title: '注册',
+        keepAlive: false,
+        requireArth: false
+      },
+      component: resolve => require(['../views/Login/index'],resolve)
     }
   ]
 })
 
 //进行登录拦截
 router.beforeEach((to, from, next) => {
-  
-  if(to.meta.requireArth){
+
+  if(to.meta.requireArth&&to.name!='login'){
     var token = window.localStorage.getItem('token');
     if(token){ 
         next();
     } else {
-      // let code = commonJS.getUrlKey('http://ypv9s8.natappfree.cc/wechat/callBack?code=071DrUrj1bk7qu0MPeqj1WGSrj1DrUrm&state=STATE',"code")
-      // console.log(code);
-      // getWxLogin.request(projectConfig.WECHAT_LOGIN,'','get')
-      // console.log(111);
-      let code2 = commonJS.getUrlKey('http://ypv9s8.natappfree.cc/wechat/callBack?code=071DrUrj1bk7qu0MPeqj1WGSrj1DrUrm&state=STATE',"code")
-      console.log(222);
-       console.log(code2);
-  
-        // if(to.path=='/register'){ //如果是登录页面路径，就直接next()
-        //     next();
-        // } else { //不然就跳转到登录；
-        //     next('/register');
-        // }
+
+      // 发起请求拿到微信授权地址
+      getWxLogin.request(projectConfig.WECHAT_LOGIN,'','get')
+
+      // 获取code
+      let code = commonJS.getUrlKey(window.location.href,"code")
+      console.log(code);
+      // next('/login')
     }
   }else{
     next()

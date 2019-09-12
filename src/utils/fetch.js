@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { Toast } from 'vant';
+
 // 遮罩层组件
 // 消息通知组件
 // import {Notification} from 'element-ui'
@@ -34,40 +36,32 @@ service.interceptors.request.use(config => {
 // response,服务器端返回拦截器
 service.interceptors.response.use(
   response => {
+    
     /**
      * code为非200是抛错 可结合自己业务进行修改
      */
     if (response.headers['content-type'].indexOf('text/html') !== -1) {
       return response.data
     }
+    // Toast('提示内容');
+    let res = response.data
 
-    // let res = response.data
-
-    // if (res.errorCode === projectConfig.RESPONSE_CODE_ERROR_SERVER_ERROR) {
-      // Notification.warning({
-      //   title: '警告',
-      //   message: res.errorMsg
-      // })
-    // } else {
+    if (res.errorCode === projectConfig.RESPONSE_CODE_ERROR_SERVER_ERROR) {
+      Toast(_message);
+    } else {
       // 业务处理成功信息 success
       // 200 正常
-      // const _message = res.errorMsg
-      // if (res.errorCode !== projectConfig.RESPONSE_CODE_SUCESS && _message !== '') {
-        // Notification.error({
-        //   message: _message
-        // })
-      // }
-      // return response.data
-    // }
+      const _message = res.errorMsg
+      if (res.errorCode !== projectConfig.RESPONSE_CODE_SUCESS && _message !== '') {
+        Toast(_message);
+      }
+      return response.data
+    }
 
     // 全局返回状态码拦截.end
   },
   error => {
-    // Notification.error({
-    //   title: '错误',
-    //   message: error.message
-    // })
-
+    Toast(error.message);
     return Promise.reject(error)
   }
 )

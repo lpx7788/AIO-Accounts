@@ -11,17 +11,11 @@
 export default {
   name: 'app',
   mounted(){
-    const script = document.createElement('script')
-    script.src = 'https://s22.cnzz.com/z_stat.php?id=1275436931&web_id=1275436931'
-    script.language = 'JavaScript'
-    document.body.appendChild(script)
+
   },
   watch: {
     '$route' (to, from) {
-      if (window._czc) {
-        let refererUrl = '/'
-        window._czc.push(['_trackPageview', refererUrl+to.meta.title, refererUrl])
-      }
+      // console.log(to);
     }
   }
 }

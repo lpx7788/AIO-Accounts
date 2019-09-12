@@ -15,7 +15,8 @@ class projectConfig {
  // 资讯列表查询
  static REQUEST_URL_INFO_LIST_QUERY = 'category/tree';
  static WECHAT_LOGIN = 'wechat/wxLogin';
- static JSSDKCONFIG = 'category/tree';
+//  static JSSDKCONFIG = 'category/tree';
+//  static ORDERLIST = 'v1.2/product/search';
 //  static JSSDKCONFIG = 'OAutho/JsSdkConfig';
 
 

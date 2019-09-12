@@ -9,8 +9,8 @@
       </van-swipe>
       <section class="content_list">
         <div class="title_hot">热门推荐</div>
-        <van-list class="hot_list" v-model="hotListLoading" :finished="hotListFinished" finished-text="没有更多了" @load="hotListOnLoad">
-          <div class="hot_list_item" v-for="item in hotList" :key="item.id" @click="toDetail">
+        <van-list class="hot_list" v-model="dataListLoading" :finished="dataListFinished" finished-text="没有更多了" @load="getPageList">
+          <div class="hot_list_item" v-for="item in dataList" :key="item.id" @click="toDetail">
             <p class="hot_list_item_title"><span>活动爆款</span></p>
             <p class="hot_list_item_name">聚点一号</p>
             <p class="hot_list_item_yield"><span class="num">6.0%</span><span class="yield">预计年化收益率</span></p>
@@ -41,14 +41,20 @@
           'https://shopstatic.vivo.com.cn/vivoshop/commodity/20180430/20180430232146894398_original.jpg',
           'https://shopstatic.vivo.com.cn/vivoshop/commodity/20180418/20180418104131830678_original.jpg'
         ],
-        hotListLoading: false,// 热门推荐加载状态
-        hotListFinished: false,// 热门推荐完成状态
-        hotList: [],// 热门推荐列表
+        dataListLoading: false,// 热门推荐加载状态
+        dataListFinished: false,// 热门推荐完成状态
+        dataList: [],// 热门推荐列表
+        parameter:{
+          pageNum:1,
+          pageSize:'10',
+          totalPage:1,
+        }
+       
       }
     },
       mounted () {
-      this.getPageList();
-      this.sdk.getJSSDK(this.wxRegCallback)
+      // this.getPageList();
+      // this.sdk.getJSSDK(this.wxRegCallback)
     },
     methods: {
 
@@ -57,7 +63,7 @@
       let opstion = {
           title: '分享',		//分享标题
           desc: '个人资料',						//分享内容
-          linkurl: 	'http://127.0.0.1:7089/?home=1',//分享链接
+          linkurl: 	'http://127.0.0.1:7676/?home=1',//分享链接
           img: 'https://shopstatic.vivo.com.cn/vivoshop/commodity/20180418/20180418104131830678_original.jpg',				//分享内容显示的图片
           success: function () {
             console.log('分享成功');
@@ -77,27 +83,35 @@
           this.isLoading = false;
         }, 500);
       },
-      hotListOnLoad(){
+      getPageList(){
         setTimeout(()=>{
           for (let i = 0; i < 10; i++) {
-            this.hotList.push(this.hotList.length + 1);
+            this.dataList.push(this.dataList.length + 1);
+            console.log(this.dataList);
           }
           // 加载状态结束
-          this.hotListLoading = false;
-          if(this.hotList.length >= 40){
-            this.hotListFinished = true;
+          this.dataListLoading = false;
+          if(this.dataList.length >= 40){
+            this.dataListFinished = true;
           }
         },500)
       },
-       getPageList () {
-        const param = {
-  
-        }
-        // this.httpClient.request(this.projectConfig.REQUEST_URL_INFO_LIST_QUERY, param)
-        //   .then(res => {
-
-        //   })
-      },
+    //    getPageList () {
+    //     this.dataListLoading = false;
+    //     const param = {
+    //       deliveryType:1,
+    //       pageSize:this.parameter.pageSize,
+    //       pageNum:this.parameter.pageNum,
+    //     }
+    //     // this.httpClient.request(this.projectConfig.ORDERLIST, param,'post')
+    //     //   .then(res => {
+    //     //     console.log('数据获取====');
+          
+    //     //     this.dataListFinished = true;
+    //     //     this.dataList = res.returnObject.products
+    //     //      console.log(this.dataList);
+    //     //   })
+    //   },
     },
 
 

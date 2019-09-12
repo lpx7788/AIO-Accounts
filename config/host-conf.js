@@ -15,23 +15,23 @@ const ENV_LIST = [
   {
     envName: 'dev',
     dirName: 'dev',
-    apiHostName: 'http://7zrwmk.natappfree.cc/',
+    apiHostName: 'http://ymxrp9.natappfree.cc',
     assetHostName:'',
-    projectHostName: 'http://7zrwmk.natappfree.cc/'
+    projectHostName: 'http://ymxrp9.natappfree.cc'
   },
   {
     envName: 'test',
     dirName: 'test',
-    apiHostName: 'http://7zrwmk.natappfree.cc/',
+    apiHostName: 'http://ymxrp9.natappfree.cc',
     assetHostName: '',
-    projectHostName: 'http://7zrwmk.natappfree.cc/'
+    projectHostName: 'http://ymxrp9.natappfree.cc'
   },
   {
     envName: 'prod',
     dirName: 'prod',
-    apiHostName: 'http://7zrwmk.natappfree.cc/',
+    apiHostName: 'http://ymxrp9.natappfree.cc',
     assetHostName:'',
-    projectHostName: 'http://7zrwmk.natappfree.cc/'
+    projectHostName: 'http://ymxrp9.natappfree.cc'
   }
   // {
   //   envName: 'dev',

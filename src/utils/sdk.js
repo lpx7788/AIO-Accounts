@@ -6,9 +6,7 @@ const jsApiList = ['onMenuShareAppMessage', 'onMenuShareTimeline', 'onMenuShareQ
 
 function getJSSDK(callback) {
   console.log('分享ajax==');
-  console.log(callback);
-  callback();
-  return;
+
   let url = window.location.href;
   httpClient.request(projectConfig.JSSDKCONFIG + '?url=' + encodeURIComponent(url), '', 'get').then(res => {
     if(!res) return;
@@ -24,9 +22,9 @@ function getJSSDK(callback) {
     
 
     wx.ready(function () {
-      // if (callback) {
-      //   callback()
-      // }
+      if (callback) {
+        callback()
+      }
     })
     wx.error(function (res) {
       alert("微信验证失败");
@@ -35,7 +33,7 @@ function getJSSDK(callback) {
 }
 
 function shareMenu(opstion) {
-  console.log('opstion====',opstion);
+  // console.log('opstion====',opstion);
   // 2.1分享给朋友
   wx.onMenuShareAppMessage({
     title: opstion.title,

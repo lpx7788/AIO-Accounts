@@ -22,8 +22,8 @@ class httpClient {
         method: method?method:'post',
         data: param,
         headers: headers
-      }).then(response => {
-        resolve(response)
+      }).then(res => {
+        resolve(res)
       }, err => {
         reject(err)
       }).catch((error) => {

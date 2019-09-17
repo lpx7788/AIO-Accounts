@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import getWxLogin from '../utils/authorization'
 import {projectConfig} from '@/utils/projectConfig'
-import commonJS from '@/utils/common'
-
+import { Toast } from 'vant';
+import {httpClient} from '@/utils/httpClient'
 
 Vue.use(Router)
 
@@ -41,39 +41,44 @@ const router = new Router({
       component: resolve => require(['../views/Register/index'],resolve)
     },
     {
-      path: '/login',
-      name: 'login',
+      path: '/detail',
+      name: 'detail',
       meta: {
         title: '注册',
         keepAlive: false,
         requireArth: false
       },
-      component: resolve => require(['../views/Login/index'],resolve)
+      component: resolve => require(['../views/Detail/index'],resolve)
     }
   ]
 })
 
 //进行登录拦截
 router.beforeEach((to, from, next) => {
-
-  if(to.meta.requireArth&&to.name!='login'){
-    var token = window.localStorage.getItem('token');
-    if(token){ 
+  if(to.meta.requireArth){
+    var userInfo = localStorage.getItem('userInfo');
+    if(userInfo){ 
         next();
     } else {
-
-      // 发起请求拿到微信授权地址
-      getWxLogin.request(projectConfig.WECHAT_LOGIN,'','get')
-
-      // 获取code
-      let code = commonJS.getUrlKey(window.location.href,"code")
-      console.log(code);
-      // next('/login')
+      if(!to.query.openid){
+        getWxLogin.request(projectConfig.WECHAT_LOGIN,'','get')
+      }else{
+        // 获取用户信息
+        httpClient.request(projectConfig.GET_USERINFO,{openid:to.query.openid},'post')
+        .then(res => {
+          if(res.returnObject){
+            Toast("登录成功");
+            localStorage.setItem('userInfo',JSON.stringify(res.returnObject))
+            setTimeout(function(){
+              next()
+            },2000)
+          }
+        })
+      }
     }
   }else{
     next()
   }
-  
 })
 
 export default router;

@@ -49,10 +49,8 @@
     methods: {
 
     },
-    created(){
-       console.log(this.$route.path)
+    created(){       
        this.tab_active = this.$route.path
-       
     },
     mounted () {
 

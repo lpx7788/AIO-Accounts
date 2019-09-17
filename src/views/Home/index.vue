@@ -87,7 +87,7 @@
         setTimeout(()=>{
           for (let i = 0; i < 10; i++) {
             this.dataList.push(this.dataList.length + 1);
-            console.log(this.dataList);
+  
           }
           // 加载状态结束
           this.dataListLoading = false;

@@ -1,6 +1,6 @@
 <template>
-  <div class="loginPage">
-    <!-- <iframe :src="url" frameborder="0"></iframe> -->
+  <div class="loginPage" style="width:100%;height:100%;">
+    <!-- <iframe src="https://m.51paiyide.com/dist/#/" frameborder="0" style="width:100%;height:100%;"></iframe> -->
   </div>
 </template>
 
@@ -21,11 +21,10 @@ export default {
     })
   },
   methods:{
-    
   }
 };
 </script>
 
 <style lang="less" scoped>
-
+  
 </style>

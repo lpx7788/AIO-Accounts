@@ -13,17 +13,14 @@ class projectConfig {
   static API_HOST_NAME = process.env.HOST_NAME;
 
  // 资讯列表查询
- static REQUEST_URL_INFO_LIST_QUERY = 'category/tree';
+//  static REQUEST_URL_INFO_LIST_QUERY = 'category/tree';
  static WECHAT_LOGIN = 'wechat/wxLogin';
+ static GET_USERINFO = 'wechat/getUserInfo';
+ static WX_REGISTER = 'wechat/register';
 //  static JSSDKCONFIG = 'category/tree';
 //  static ORDERLIST = 'v1.2/product/search';
 //  static JSSDKCONFIG = 'OAutho/JsSdkConfig';
 
-
-
-
-
- 
 }
 
 export {

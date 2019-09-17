@@ -2,15 +2,25 @@
   <div class="minePage">
     <div class="minePage_body">
       <div class="minePage_user">
-         <img src="https://shopstatic.vivo.com.cn/vivoshop/commodity/20180430/20180430232146894398_original.jpg" alt="">
-         <p>蓝色天空</p>
-         <p class="phone">13430319375</p>
+         <img :src="userInfo.headimgurl" alt="">
+         <p>{{userInfo.userName}}</p>
+         <p class="phone">{{userInfo.userPhone}}</p>
       </div>
       <div class="minePage_referral">
         <span class="code_text">推荐码</span>
-        <span>Q763</span>
+        <span>{{userInfo.referralCode}}</span>
       </div>
-      <div class="minePage_btn"> <van-button class="recommend_btn"  type="info" size="large">推荐给好友</van-button></div>
+      <div class="minePage_btn"> <van-button class="recommend_btn"  type="info" size="large"  @click="show = true">推荐给好友</van-button></div>
+      <!-- <van-overlay
+        :show="show"
+        z-index="10000"
+        @click="show = false"
+      /> -->
+      <div class="overlay" v-if="show">
+        <div class="bg"  @click="show = false"></div>
+        <p>点击右上角分享给好友</p>
+      </div>
+
     </div>
     <div class="footer">
       <Foot></Foot>
@@ -28,10 +38,15 @@ import Foot  from '@/components/Footer';
     },
     data () {
       return {
-       
+       userInfo:{}, 
+       show: false
       }
     },
-    
+    created(){
+     if(localStorage.getItem('userInfo')){
+      this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+     }
+    },
     methods: {
     },
     mounted () {}
@@ -44,7 +59,33 @@ import Foot  from '@/components/Footer';
   display: flex;
     flex-direction: column;
     height: 100%;
+   .overlay{
+     position: fixed;
+     top: 0;
+     left: 0;
+     height: 100%;
+     width: 100%;
+     z-index: 1000;
+     color: #fff;
+     .bg{
+        height: 100%;
+        width: 100%;
+        background: #000;
+        opacity: 0.7;
+     }
+     p{
+       position: fixed;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%,-50%);
+       font-size: 40px;
+       width: 100%;
+       text-align: center;
+     }
 
+
+
+   }
   .minePage_body{
 
     flex: 1;

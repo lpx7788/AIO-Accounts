@@ -11,15 +11,10 @@
         <span>{{userInfo.referralCode}}</span>
       </div>
       <div class="minePage_btn"> <van-button class="recommend_btn"  type="info" size="large"  @click="show = true">推荐给好友</van-button></div>
-      <!-- <van-overlay
-        :show="show"
-        z-index="10000"
-        @click="show = false"
-      /> -->
-      <div class="overlay" v-if="show">
+      <!-- <div class="overlay" v-if="show">
         <div class="bg"  @click="show = false"></div>
         <p>点击右上角分享给好友</p>
-      </div>
+      </div> -->
 
     </div>
     <div class="footer">
@@ -50,7 +45,6 @@ import Foot  from '@/components/Footer';
     methods: {
     },
     mounted () {}
-
   }
 </script>
 

@@ -39,16 +39,6 @@ const router = new Router({
         requireArth: false
       },
       component: resolve => require(['../views/Register/index'],resolve)
-    },
-    {
-      path: '/detail',
-      name: 'detail',
-      meta: {
-        title: '注册',
-        keepAlive: false,
-        requireArth: false
-      },
-      component: resolve => require(['../views/Detail/index'],resolve)
     }
   ]
 })

@@ -6,17 +6,18 @@ import { Toast } from 'vant';
 import {httpClient} from '@/utils/httpClient'
 
 Vue.use(Router)
-console.log(process.env.NODE_ENV);
+console.log(process.env.DIR_NAME=='dev'?'':(process.env.PATH_LENGTH=='2'?'/'+process.env.DIR_NAME:''));
+console.log(process.env.PATH_LENGTH=='2');
 const router = new Router({
   mode: 'history',
-  // base:process.env.NODE_ENV=='production'?'':'/dist',
-  base: process.env.DIR_NAME==='dev'?'':'/'+process.env.DIR_NAME,
+  base: process.env.DIR_NAME=='dev'?'':(process.env.PATH_LENGTH=='2'?'/'+process.env.DIR_NAME:''),
   routes: [
     {
       path: '/',
       name: 'home',
       meta: {
         title: '聚点商城',
+        keepAlive: true,
         keepAlive: true,
         requireArth: true
       },

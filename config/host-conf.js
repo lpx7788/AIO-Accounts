@@ -10,38 +10,22 @@ const chalk = require('chalk')
 * apiHostName: 这个环境下面的api 请求的域名
 * assetHostName: 静态资源存放的域名，未指定则使用相对路径
 * projectHostName: 项目访问地址
+* pathLength: 1 1级域名 2二级域名
 * */
 
 const ENV_LIST = [
-  // {
-  //   envName: 'dev',
-  //   dirName: 'dev',
-  //   apiHostName: 'http://7awenp.natappfree.cc/',
-  //   assetHostName:'',
-  //   projectHostName: 'http://7awenp.natappfree.cc/'
-  // },
-  // {
-  //   envName: 'test',
-  //   dirName: 'test',
-  //   apiHostName: 'http://7awenp.natappfree.cc/',
-  //   assetHostName: '',
-  //   projectHostName: 'http://7awenp.natappfree.cc/'
-  // },
-  // {
-  //   envName: 'prod',
-  //   dirName: 'prod',
-  //   apiHostName: 'http://7awenp.natappfree.cc/',
-  //   assetHostName:'',
-  //   projectHostName: 'http://7awenp.natappfree.cc/'
-  // }
+
   {
+    pathLength:'2',
     envName: 'dev',
     dirName: 'dev',
     apiHostName: 'http://ezg844.natappfree.cc/',
     assetHostName:'.',
-    projectHostName: 'http://ezg844.natappfree.cc/'
+    projectHostName: 'http://ezg844.natappfree.cc/',
+
   },
   {
+    pathLength:'2',
     envName: 'test',
     dirName: 'test',
     apiHostName: 'http://ezg844.natappfree.cc/',
@@ -49,6 +33,7 @@ const ENV_LIST = [
     projectHostName: 'http://ezg844.natappfree.cc/'
   },
   {
+    pathLength:'2',
     envName: 'AIO-WX',
     dirName: 'AIO-WX',
     apiHostName: 'http://ezg844.natappfree.cc/',
@@ -81,6 +66,9 @@ if( HOST_CONF === undefined) {
 process.env.HOST_NAME = HOST_CONF.apiHostName
 process.env.PROJECT_HOST_NAME = HOST_CONF.projectHostName
 process.env.DIR_NAME = HOST_CONF.dirName
+process.env.PATH_LENGTH = HOST_CONF.pathLength
+
+
 
 // log选中的变量
 console.log(chalk.green('选中的参数为：'))

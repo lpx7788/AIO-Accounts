@@ -67,7 +67,7 @@ npm install --registry=https://registry.npm.taobao.org
 ## 连接开发服务器
 npm run dev dev
 ## 连接生产服务器
-npm run dev prod
+npm run dev AIO_WX
 ## 连接测试服务器
 npm run dev test
 
@@ -76,7 +76,7 @@ npm run dev test
 ## 打包发布测试
 npm run build dev
 ## 打包发布生产
-npm run build prod
+npm run build AIO_WX
 ## 打包发布调试模式
 npm run build test
 ```

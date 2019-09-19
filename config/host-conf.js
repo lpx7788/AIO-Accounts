@@ -19,25 +19,25 @@ const ENV_LIST = [
     pathLength:'2',
     envName: 'dev',
     dirName: 'dev',
-    apiHostName: 'http://ezg844.natappfree.cc/',
+    apiHostName: 'http://tmtm8c.natappfree.cc/',
     assetHostName:'.',
-    projectHostName: 'http://ezg844.natappfree.cc/',
+    projectHostName: 'http://tmtm8c.natappfree.cc/',
   },
   {
     pathLength:'2',
     envName: 'test',
     dirName: 'test',
-    apiHostName: 'http://ezg844.natappfree.cc/',
+    apiHostName: 'http://tmtm8c.natappfree.cc/',
     assetHostName: '.',
-    projectHostName: 'http://ezg844.natappfree.cc/'
+    projectHostName: 'http://tmtm8c.natappfree.cc/'
   },
   {
     pathLength:'2',
     envName: 'AIO-WX',
     dirName: 'AIO-WX',
-    apiHostName: 'http://ezg844.natappfree.cc/',
+    apiHostName: 'http://tmtm8c.natappfree.cc/',
     assetHostName:'.',
-    projectHostName: 'http://ezg844.natappfree.cc/'
+    projectHostName: 'http://tmtm8c.natappfree.cc/'
   }
 ]
 

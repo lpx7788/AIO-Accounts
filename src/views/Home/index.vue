@@ -6,7 +6,7 @@
       <van-swipe :autoplay="2000" indicator-color="white">
         <van-swipe-item v-for="(item, index) in CarouselList" :key="index">
           <van-image
-            @click="toSwiperImgDetail(item.productUrl)"
+            @click="toSwiperImgDetail(item.productUrl,item.id)"
             class="swipe-img"
             fit="cover"
             :src="item.pictureUrl"
@@ -23,7 +23,7 @@
           finished-text="没有更多了"
           @load="onLoadList"
         >
-          <div class="hot_list_item" v-for="item in dataList" :key="item.id" @click="toDetail(item.productUrl)">
+          <div class="hot_list_item" v-for="item in dataList" :key="item.id" @click="toDetail(item.productUrl,item.id)">
             <p class="hot_list_item_title">
               <span>{{item.productDynamic}}</span>
             </p>
@@ -61,10 +61,19 @@ export default {
         pageNum: 1,
         pageSize: "10",
         totalPage: 1
-      }
+      },
+      userInfo:{}
     };
   },
+  created(){
+    if(localStorage.getItem('userInfo')){
+        this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    }
+    console.log(this.userInfo);
+
+  },
   mounted() {
+
     this.getCarousel();
     this.getPageList();
     this.sdk.getJSSDK(this.wxRegCallback)
@@ -86,12 +95,31 @@ export default {
       };
       this.sdk.shareMenu(opstion);
     },
-    toDetail(productUrl) {
-       window.location.href =  productUrl
-    },
 
-    toSwiperImgDetail(productUrl) {
-      window.location.href = productUrl;
+    // 跳转列表详情
+    toDetail(productUrl,productId) {
+      this.getRecord(productUrl,productId)
+    },
+    
+    //跳转轮播图详情
+    toSwiperImgDetail(productUrl,productId) {
+      this.getRecord(productUrl,productId)
+    },
+   
+    //记录用户信息
+    getRecord(productUrl,productId){
+        let param = {
+          userName:this.userInfo.userName,
+          userCode:this.userInfo.userCode,
+          userPhone:this.userInfo.userPhone,
+          productId:productId,
+          referralCode:this.userInfo.referralCode,
+        }
+         this.httpClient.request(this.projectConfig.SHARE_RECORDSHAREMESS, param,'post')
+        .then(res => {
+         window.location.href = productUrl;
+        })
+
     },
 
     onRefresh() {
@@ -108,7 +136,9 @@ export default {
           this.getPageList()
           }// 加载数据
       },
-       getPageList () {
+
+     //获取列表信息列表
+     getPageList () {
          let self = this;
          this.dataListLoading = true
          const param = {
@@ -128,8 +158,9 @@ export default {
           }
         
         })
-      },
+    },
     
+    //获取轮播图信息列表
     getCarousel() {
       this.httpClient
         .request(this.projectConfig.GET_CAROUSEL, {}, "post")

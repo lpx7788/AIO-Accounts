@@ -20,6 +20,7 @@ class projectConfig {
   static GET_HOT_RECOMMEND = 'product/queryHotRecommend';
   static GET_VERIFICATIONCODE = 'user/verificationCode';
   static SHARE_GETSIGNATURE = 'share/getSignature';
+  static SHARE_RECORDSHAREMESS = 'share/recordShareMess';
 
 
 }

@@ -11,49 +11,50 @@ const chalk = require('chalk')
 * assetHostName: 静态资源存放的域名，未指定则使用相对路径
 * projectHostName: 项目访问地址
 * */
+
 const ENV_LIST = [
-  {
-    envName: 'dev',
-    dirName: 'dev',
-    apiHostName: 'http://npsdzr.natappfree.cc/',
-    assetHostName:'',
-    projectHostName: 'http://npsdzr.natappfree.cc/'
-  },
-  {
-    envName: 'test',
-    dirName: 'test',
-    apiHostName: 'http://npsdzr.natappfree.cc/',
-    assetHostName: '',
-    projectHostName: 'http://npsdzr.natappfree.cc/'
-  },
-  {
-    envName: 'prod',
-    dirName: 'prod',
-    apiHostName: 'http://npsdzr.natappfree.cc/',
-    assetHostName:'',
-    projectHostName: 'http://npsdzr.natappfree.cc/'
-  }
   // {
   //   envName: 'dev',
   //   dirName: 'dev',
-  //   apiHostName: 'http://192.168.0.230:8080/',
+  //   apiHostName: 'http://7awenp.natappfree.cc/',
   //   assetHostName:'',
-  //   projectHostName: 'http://192.168.0.230:7001/'
+  //   projectHostName: 'http://7awenp.natappfree.cc/'
   // },
   // {
   //   envName: 'test',
   //   dirName: 'test',
-  //   apiHostName: 'http://192.168.0.230:8080/',
+  //   apiHostName: 'http://7awenp.natappfree.cc/',
   //   assetHostName: '',
-  //   projectHostName: 'http://192.168.0.230:7001/'
+  //   projectHostName: 'http://7awenp.natappfree.cc/'
   // },
   // {
   //   envName: 'prod',
   //   dirName: 'prod',
-  //   apiHostName: 'https://aio.manytrader.net/',
+  //   apiHostName: 'http://7awenp.natappfree.cc/',
   //   assetHostName:'',
-  //   projectHostName: 'https://h5.manytrader.net/'
+  //   projectHostName: 'http://7awenp.natappfree.cc/'
   // }
+  {
+    envName: 'dev',
+    dirName: 'dev',
+    apiHostName: 'http://ezg844.natappfree.cc/',
+    assetHostName:'.',
+    projectHostName: 'http://ezg844.natappfree.cc/'
+  },
+  {
+    envName: 'test',
+    dirName: 'test',
+    apiHostName: 'http://ezg844.natappfree.cc/',
+    assetHostName: '.',
+    projectHostName: 'http://ezg844.natappfree.cc/'
+  },
+  {
+    envName: 'AIO-WX',
+    dirName: 'AIO-WX',
+    apiHostName: 'http://ezg844.natappfree.cc/',
+    assetHostName:'.',
+    projectHostName: 'http://ezg844.natappfree.cc/'
+  }
 ]
 
 const HOST_ENV = process.env.HOST_ENV
@@ -79,6 +80,7 @@ if( HOST_CONF === undefined) {
 // 把apiHostname设置到 node 的环境中 方便客户端使用
 process.env.HOST_NAME = HOST_CONF.apiHostName
 process.env.PROJECT_HOST_NAME = HOST_CONF.projectHostName
+process.env.DIR_NAME = HOST_CONF.dirName
 
 // log选中的变量
 console.log(chalk.green('选中的参数为：'))
@@ -86,3 +88,4 @@ console.log(HOST_CONF)
 
 module.exports.HOST_CONF = HOST_CONF
 module.exports.ENV_LIST = ENV_LIST
+

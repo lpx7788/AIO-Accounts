@@ -61,6 +61,7 @@ export default {
   created(){
      this.openId=this.$route.query.openid
      this.accessToken=this.$route.query.accessToken
+    //  this.InvitationCode=this.$route.query.InvitationCode
 
   },
 
@@ -117,6 +118,9 @@ export default {
           }
         
       }).catch(function(err) {
+        this.time = 0;
+        this.btntxt = "获取验证码";
+        this.disabled = false;
         console.log(err);
       });
     },
@@ -135,23 +139,17 @@ export default {
       this.time = 60;
       this.disabled = true;
       this.timer();
-      // this.httpClient.request(this.projectConfig.ORDERLIST, {
-      //   userPhone:this.userPhone
-      // },'post')
-      // .then(res => {
-      //   if (res.status != 200) {
-      //     this.$toast("网络错误");
-      //   } else if (res.status == 200) {
-      //     if (res.data.error == null && res.data.result == true) {
-      //       this.$toast("请注意接收验证码");
-      //     } else if (res.data.error != null && res.data.result == null) {
-      //       this.$toast( res.data.error.msg);
-      //     }
-      //   }
+      this.httpClient.request(this.projectConfig.GET_VERIFICATIONCODE, {
+        userPhone:this.userPhone
+      },'post')
+      .then(res => {
+         this.$toast("请注意接收验证码");
 
-      // }).catch(function(err) {
-      //   console.log(err);
-      // });
+      }).catch(function(err) {
+        this.time = 0;
+        this.btntxt = "获取验证码";
+        this.disabled = false;
+      });
 
 	},
 	//验证码的倒计时

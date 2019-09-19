@@ -80,7 +80,9 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.HOST_NAME': '\"' + process.env.HOST_NAME + '\"',
-      'process.env.PROJECT_HOST_NAME': '\"' + process.env.PROJECT_HOST_NAME + '\"'
+      'process.env.PROJECT_HOST_NAME': '\"' + process.env.PROJECT_HOST_NAME + '\"',
+      'process.env.DIR_NAME': '\"' + process.env.DIR_NAME + '\"'
+
     }),
     new webpack.ProvidePlugin({
       moment: 'moment'

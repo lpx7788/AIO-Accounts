@@ -6,9 +6,11 @@ import { Toast } from 'vant';
 import {httpClient} from '@/utils/httpClient'
 
 Vue.use(Router)
-
+console.log(process.env.NODE_ENV);
 const router = new Router({
   mode: 'history',
+  // base:process.env.NODE_ENV=='production'?'':'/dist',
+  base: process.env.DIR_NAME==='dev'?'':'/'+process.env.DIR_NAME,
   routes: [
     {
       path: '/',
@@ -45,30 +47,32 @@ const router = new Router({
 
 //进行登录拦截
 router.beforeEach((to, from, next) => {
-  if(to.meta.requireArth){
-    var userInfo = localStorage.getItem('userInfo');
-    if(userInfo){ 
-        next();
-    } else {
-      if(!to.query.openid){
-        getWxLogin.request(projectConfig.WECHAT_LOGIN,'','get')
-      }else{
-        // 获取用户信息
-        httpClient.request(projectConfig.GET_USERINFO,{openid:to.query.openid},'post')
-        .then(res => {
-          if(res.returnObject){
-            Toast("登录成功");
-            localStorage.setItem('userInfo',JSON.stringify(res.returnObject))
-            setTimeout(function(){
-              next()
-            },2000)
-          }
-        })
-      }
-    }
-  }else{
-    next()
-  }
+  // if(to.meta.requireArth){
+  //   var userInfo = localStorage.getItem('userInfo');
+  //   if(userInfo){ 
+  //       next();
+  //   } else {
+  //     if(!to.query.openid){
+  //       getWxLogin.request(projectConfig.WECHAT_LOGIN,'','get')
+  //       getWxLogin.request(projectConfig.WECHAT_LOGIN,'','get')
+  //     }else{
+  //       // 获取用户信息
+  //       httpClient.request(projectConfig.GET_USERINFO,{openid:to.query.openid},'post')
+  //       .then(res => {
+  //         if(res.returnObject){
+  //           Toast("登录成功");
+  //           localStorage.setItem('userInfo',JSON.stringify(res.returnObject))
+  //           setTimeout(function(){
+  //             next()
+  //           },2000)
+  //         }
+  //       })
+  //     }
+  //   }
+  // }else{
+  //   next();
+  // }
+  next()
 })
 
 export default router;

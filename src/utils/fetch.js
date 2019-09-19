@@ -47,13 +47,17 @@ service.interceptors.response.use(
     let res = response.data
 
     if (res.errorCode === projectConfig.RESPONSE_CODE_ERROR_SERVER_ERROR) {
-      Toast(_message);
+      if(_message){
+        Toast(_message);
+      }
     } else {
       // 业务处理成功信息 success
       // 200 正常
       const _message = res.errorMsg
       if (res.errorCode !== projectConfig.RESPONSE_CODE_SUCESS && _message !== '') {
-        Toast(_message);
+        if(_message){
+          Toast(_message);
+        }
       }
       return response.data
     }
@@ -61,7 +65,10 @@ service.interceptors.response.use(
     // 全局返回状态码拦截.end
   },
   error => {
-    Toast(error.message);
+    if(error.message){
+      Toast(error.message);
+    }
+   
     return Promise.reject(error)
   }
 )

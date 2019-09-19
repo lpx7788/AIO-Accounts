@@ -5,17 +5,33 @@ const jsApiList = ['onMenuShareAppMessage', 'onMenuShareTimeline', 'onMenuShareQ
 
 
 function getJSSDK(callback) {
-  console.log('分享ajax==');
 
-  let url = window.location.href;
-  httpClient.request(projectConfig.JSSDKCONFIG + '?url=' + encodeURIComponent(url), '', 'get').then(res => {
+  //获取随机串
+  let createNonceStr = Math.random().toString(36).substr(2, 15);
+  
+  // timestamp
+  let createTimeStamp = parseInt(new Date().getTime() / 1000) + '';
+  
+  // let url =  location.href.split('#')[0]
+  // let url = window.location.href;
+  let url = location.href.split('#')[0];
+//  alert(location.href.split('#')[0]);
+
+  let data ={
+    // url:' http://r38227.natappfree.cc/', 
+    url:encodeURIComponent(url), 
+    timestamp: createTimeStamp,
+    nonceStr: createNonceStr
+  }
+  httpClient.request(projectConfig.SHARE_GETSIGNATURE , data, 'post').then(res => {
     if(!res) return;
-    let datas = res.data;
+    let datas = res.returnObject;
+
     wx.config({
-      debug: true, // 开启调试模式
-      appId: 'wx9d399xxxxxxxxx14', // 必填，公众号的唯一标识
+      debug: false, // 开启调试模式
+      appId: 'wx9b060f707e119c4f', // 必填，公众号的唯一标识
       timestamp: datas.timestamp, // 必填，生成签名的时间戳
-      nonceStr: datas.noncestr, // 必填，生成签名的随机串
+      nonceStr: datas.nonceStr, // 必填，生成签名的随机串
       signature: datas.signature, // 必填，签名
       jsApiList: jsApiList // 必填，需要使用的JS接口列表
     })
@@ -27,7 +43,7 @@ function getJSSDK(callback) {
       }
     })
     wx.error(function (res) {
-      alert("微信验证失败");
+      // alert("微信验证失败");
     });
   })
 }
@@ -51,7 +67,7 @@ function shareMenu(opstion) {
     },
     fail: function fail(res) {
       opstion.error('分享错误')
-      alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
     }
   });
   // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
@@ -60,18 +76,18 @@ function shareMenu(opstion) {
     link: opstion.linkurl,
     imgUrl: opstion.img,
     trigger: function trigger(res) {
-      alert('用户点击分享到朋友圈');
+      // alert('用户点击分享到朋友圈');
     },
     success: function success(res) {
       opstion.success()
-      alert('已分享');
+      // alert('已分享');
     },
     cancel: function cancel(res) {
-      alert('已取消');
+      // alert('已取消');
     },
     fail: function fail(res) {
       opstion.error('分享错误')
-      alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
     }
   });
   // 2.3 监听“分享到QQ”按钮点击、自定义分享内容及分享结果接口
@@ -81,19 +97,19 @@ function shareMenu(opstion) {
     link: opstion.linkurl,
     imgUrl: opstion.img,
     trigger: function trigger(res) {
-      alert('用户点击分享到QQ');
+      // alert('用户点击分享到QQ');
     },
     complete: function complete(res) {
-      alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
     },
     success: function success(res) {
-      alert('已分享');
+      // alert('已分享');
     },
     cancel: function cancel(res) {
-      alert('已取消');
+      // alert('已取消');
     },
     fail: function fail(res) {
-      alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
     }
   });
   // 2.4 监听“分享到微博”按钮点击、自定义分享内容及分享结果接口
@@ -103,24 +119,22 @@ function shareMenu(opstion) {
     link: opstion.linkurl,
     imgUrl: opstion.img,
     trigger: function trigger(res) {
-      alert('用户点击分享到微博');
+      // alert('用户点击分享到微博');
     },
     complete: function complete(res) {
-      alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
     },
     success: function success(res) {
-      alert('已分享');
+      // alert('已分享');
     },
     cancel: function cancel(res) {
-      alert('已取消');
+      // alert('已取消');
     },
     fail: function fail(res) {
-      alert(JSON.stringify(res));
+      // alert(JSON.stringify(res));
     }
   });
 }
-
-
 
 
 

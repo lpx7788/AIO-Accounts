@@ -24,7 +24,7 @@
         >
           <div class="hot_list_item" v-for="item in dataList" :key="item.id" @click="toDetail(item.productUrl)">
             <p class="hot_list_item_title">
-              <span>活动爆款</span>
+              <span>{{item.productDynamic}}</span>
             </p>
             <p class="hot_list_item_name">{{item.productName}}</p>
             <p class="hot_list_item_yield">
@@ -66,7 +66,7 @@ export default {
   mounted() {
     this.getCarousel();
     this.getPageList();
-    // this.sdk.getJSSDK(this.wxRegCallback)
+    this.sdk.getJSSDK(this.wxRegCallback)
   },
   methods: {
     wxRegCallback() {

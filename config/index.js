@@ -2,7 +2,7 @@ var path = require('path')
 
 // 每个环境的包路径不一样
 const HOST_CONF = require('./host-conf').HOST_CONF
-const assetsPublicPath = HOST_CONF.assetHostname === undefined?'/': HOST_CONF.assetHostname + '/'
+const assetsPublicPath = HOST_CONF.assetHostName === undefined?'/': HOST_CONF.assetHostName + '/'
 
 module.exports = {
   build: {
@@ -14,7 +14,7 @@ module.exports = {
     // assetsPublicPath: '',
     // 指定静态资源打包的路径,未指定则为相对路径
     assetsPublicPath: assetsPublicPath,
-    productionSourceMap: true,
+    productionSourceMap: false,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:

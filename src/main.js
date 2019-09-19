@@ -7,6 +7,7 @@ import {httpClient} from '@/utils/httpClient'
 import {projectConfig} from '@/utils/projectConfig'
 import commonJs   from '@/utils/common'    
 import sdk from '@/utils/sdk'
+import store from './store/store'
 
 import Vconsole from 'vconsole' 
 let vConsole = new Vconsole()
@@ -34,5 +35,6 @@ new Vue({
   router,
   template: '<App/>',
   el: '#app',
+  store,
   components: {App}
 })

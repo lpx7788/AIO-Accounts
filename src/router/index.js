@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import getWxLogin from '../utils/authorization'
 import {projectConfig} from '@/utils/projectConfig'
 import { Toast } from 'vant';
-import {httpClient} from '@/utils/httpClient'
+import {httpClient} from '@/utils/httpClient';
+import store from '../store/store'
 Vue.use(Router)
 
 const router = new Router({
@@ -46,6 +47,7 @@ const router = new Router({
 
 //进行登录拦截
 router.beforeEach((to, from, next) => {
+  store.commit('showLoading')
   // if(to.meta.requireArth){
   //   var userInfo = localStorage.getItem('userInfo');
   //   if(userInfo){ 
@@ -63,7 +65,7 @@ router.beforeEach((to, from, next) => {
   //           localStorage.setItem('userInfo',JSON.stringify(res.returnObject))
   //           setTimeout(function(){
   //             next()
-  //           },2000)
+  //           },1000)
   //         }
   //       })
   //     }
@@ -72,6 +74,9 @@ router.beforeEach((to, from, next) => {
   //   next();
   // }
   next()
+})
+router.afterEach((to, from) => {
+  store.commit('hideLoading')
 })
 
 export default router;

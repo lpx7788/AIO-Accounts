@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <loading v-show="LOADING"></loading>
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive"/>
     </keep-alive>
@@ -8,8 +9,19 @@
 </template>
 
 <script>
+
+import Loading  from '@/components/Loadding.vue';
+import {mapState} from 'vuex'
 export default {
   name: 'app',
+  computed:{
+    ...mapState([
+      'LOADING'
+    ])
+  },
+  components: {
+    Loading,
+	},
   mounted(){
 
   },

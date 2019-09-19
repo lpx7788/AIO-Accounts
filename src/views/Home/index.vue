@@ -18,6 +18,7 @@
         <van-list
           class="hot_list"
           v-model="dataListLoading"
+          :offset="0"
           :finished="dataListFinished"
           finished-text="没有更多了"
           @load="onLoadList"
@@ -57,7 +58,7 @@ export default {
       CarouselList: [], // 轮播图列表
       dataList: [], // 热门推荐列表
       parameter: {
-        pageNum: 0,
+        pageNum: 1,
         pageSize: "10",
         totalPage: 1
       }
@@ -94,38 +95,49 @@ export default {
     },
 
     onRefresh() {
-      setTimeout(() => {
-        this.$toast("刷新成功");
-        this.isLoading = false;
-      }, 500);
-      this.pageIndex = 1;
-      this.dataListFinished = false; 
-      this.getPageList(); // 加载数据
-    },
+        setTimeout(() => {
+          this.$toast('刷新成功');
+          this.isLoading = false;
+        }, 500);
+        this.pageIndex = 1
+        this.dataListFinished = false // 不写这句会导致你上拉到底过后在下拉刷新将不能触发下拉加载事件
+        this.getPageList() // 加载数据
+      },
+      onLoadList() {
+        if(this.totalPage&&this.totalPage>this.parameter.pageNum *his.parameter.pageSize){
+          this.getPageList()
+          }// 加载数据
+      },
+       getPageList () {
+         let self = this;
+         this.dataListLoading = true
+         const param = {
+          // pageSize:this.parameter.pageSize,
+          // pageNum:this.parameter.pageNum,
+        }
+        this.httpClient.request(this.projectConfig.GET_HOT_RECOMMEND, param,'post')
+        .then(res => {
 
-    onLoadList() {
-    //   console.log(222);
-    //   this.parameter.pageNum++;
-    //   this.getPageList(); // 加载数据
-    },
-
+          self.dataList = self.dataList.concat(res.returnObject)
+          this.dataListLoading = false
+          this.parameter.pageNum ++
+          this.totalPage = res.total
+         
+          if(self.dataList.length == this.totalPage||res.returnObject.length===0|| !this.totalPage){
+            self.dataListFinished = true
+          }
+        
+        })
+      },
+    
     getCarousel() {
       this.httpClient
         .request(this.projectConfig.GET_CAROUSEL, {}, "post")
         .then(res => {
           this.CarouselList = res.returnObject;
-        });
+      });
     },
-    getPageList() {
-      let self = this;
-      self.dataListLoading = true
-      this.httpClient.request(this.projectConfig.GET_HOT_RECOMMEND, {},'post')
-        .then(res => {
-        self.dataList = res.returnObject
-        self.dataListFinished = true
-        self.dataListLoading = false
-      })
-    }
+
   }
 };
 </script>

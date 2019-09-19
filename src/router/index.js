@@ -4,10 +4,8 @@ import getWxLogin from '../utils/authorization'
 import {projectConfig} from '@/utils/projectConfig'
 import { Toast } from 'vant';
 import {httpClient} from '@/utils/httpClient'
-
 Vue.use(Router)
-console.log(process.env.DIR_NAME=='dev'?'':(process.env.PATH_LENGTH=='2'?'/'+process.env.DIR_NAME:''));
-console.log(process.env.PATH_LENGTH=='2');
+
 const router = new Router({
   mode: 'history',
   base: process.env.DIR_NAME=='dev'?'':(process.env.PATH_LENGTH=='2'?'/'+process.env.DIR_NAME:''),

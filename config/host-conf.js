@@ -22,7 +22,6 @@ const ENV_LIST = [
     apiHostName: 'http://ezg844.natappfree.cc/',
     assetHostName:'.',
     projectHostName: 'http://ezg844.natappfree.cc/',
-
   },
   {
     pathLength:'2',

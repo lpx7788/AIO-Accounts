@@ -16,28 +16,28 @@ const chalk = require('chalk')
 const ENV_LIST = [
 
   {
-    pathLength:'2',
+    pathLength:'1',
     envName: 'dev',
     dirName: 'dev',
-    apiHostName: 'http://tmtm8c.natappfree.cc/',
+    apiHostName: 'http://jtapi.manytrader.net/',
     assetHostName:'.',
-    projectHostName: 'http://tmtm8c.natappfree.cc/',
+    projectHostName: 'http://jtapi.manytrader.net/',
   },
   {
-    pathLength:'2',
+    pathLength:'1',
     envName: 'test',
     dirName: 'test',
-    apiHostName: 'http://tmtm8c.natappfree.cc/',
+    apiHostName: 'http://jtapi.manytrader.net/',
     assetHostName: '.',
-    projectHostName: 'http://tmtm8c.natappfree.cc/'
+    projectHostName: 'http://jtapi.manytrader.net/'
   },
   {
-    pathLength:'2',
-    envName: 'AIO-WX',
-    dirName: 'AIO-WX',
-    apiHostName: 'http://tmtm8c.natappfree.cc/',
+    pathLength:'1',
+    envName: 'prod',
+    dirName: 'prod',
+    apiHostName: 'http://jtapi.manytrader.net/',
     assetHostName:'.',
-    projectHostName: 'http://tmtm8c.natappfree.cc/'
+    projectHostName: 'http://jtapi.manytrader.net/'
   }
 ]
 

@@ -38,13 +38,42 @@ import Foot  from '@/components/Footer';
       }
     },
     created(){
+     this.sdk.getJSSDK(this.wxRegCallback)
      if(localStorage.getItem('userInfo')){
       this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
      }
     },
     methods: {
+     wxRegCallback() {
+       let url = window.location.href
+       let param = 'referralCode='+this.userInfo.invitationCode
+
+      if(url.indexOf("?") != -1){
+        url = url.split("?")[0]+'?'+param
+      }else{
+        url =url+'?'+param
+      }
+      
+      console.log(url);
+     
+      let opstion = {
+        title: "聚点推荐", //分享标题
+        desc: "分享一个超高收益的项目，没时间了，快抢", //分享内容
+        linkurl: url, //分享链接
+        img:"http://jtapi.manytrader.net/preViewIndustry/logo.png", //分享内容显示的图片
+        success: function() {
+          console.log("分享成功");
+        },
+        error: function() {
+          console.log("分享失败");
+        }
+      };
+      this.sdk.shareMenu(opstion);
     },
-    mounted () {}
+    },
+    mounted () {
+
+    }
   }
 </script>
 

@@ -9,9 +9,9 @@ import commonJs   from '@/utils/common'
 import sdk from '@/utils/sdk'
 import store from './store/store'
 
-import Vconsole from 'vconsole' 
-let vConsole = new Vconsole()
-Vue.use(vConsole)
+// import Vconsole from 'vconsole' 
+// let vConsole = new Vconsole()
+// Vue.use(vConsole)
 
 
 import Vant from 'vant';

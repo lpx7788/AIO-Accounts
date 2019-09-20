@@ -30,8 +30,8 @@
             <van-button slot="button"  :disabled="disabled" @click="sendcode"  plain hairline size="small" type="info">{{btntxt}}</van-button>
           </van-field>
         </van-cell-group>
-        <van-cell-group>
-          <van-field v-model="InvitationCode" placeholder="请输入邀请码"    label="邀请码"
+        <van-cell-group v-if="referralCode">
+          <van-field v-model="referralCode" :readonly='true' placeholder="请输入邀请码"    label="邀请码"
           type="textarea"
           rows="1"
           autosize
@@ -50,28 +50,60 @@ export default {
       userName: "",
       userPhone: "",
       verification: "",
-      InvitationCode: "",
+      referralCode: "",
 			btntxt: "获取验证码",
 			disabled: false,
       time: 0,
       openId:'',
       accessToken:'',
+      userInfo:''
     };
   },
   created(){
-     this.openId=this.$route.query.openid
-     this.accessToken=this.$route.query.accessToken
-    //  this.InvitationCode=this.$route.query.InvitationCode
-
+ 
+    this.accessToken=this.$route.query.accessToken
+  
+    this.referralCode = sessionStorage.getItem('referralCode')!=='null'&&sessionStorage.getItem('referralCode')!==null?sessionStorage.getItem('referralCode'):''
+    this.sdk.getJSSDK(this.wxRegCallback)
+    if(localStorage.getItem('userInfo')){
+        this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    }      
   },
 
   mounted() {
     
   },
   methods:{
+     wxRegCallback() {
+       let url = window.location.href
+       let param = 'referralCode='+this.userInfo.invitationCode
+
+      if(url.indexOf("?") != -1){
+        url = url.split("?")[0]+'?'+param
+      }else{
+        url =url+'?'+param
+      }
+      
+      console.log(url);
+     
+      let opstion = {
+        title: "聚点推荐", //分享标题
+        desc: "分享一个超高收益的项目，没时间了，快抢", //分享内容
+        linkurl: url, //分享链接
+        img:"http://jtapi.manytrader.net/preViewIndustry/logo.png", //分享内容显示的图片
+        success: function() {
+          console.log("分享成功");
+        },
+        error: function() {
+          console.log("分享失败");
+        }
+      };
+      this.sdk.shareMenu(opstion);
+    },
     comfirmClick(){
       let self = this;
-     var reg = 11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/;
+    //  var reg = 11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/;
+    let reg = /^1[3456789]\d{9}$/
       if (this.userName == '') {
         this.$toast("请输入用户名");
         return
@@ -87,11 +119,7 @@ export default {
         this.$toast("请输入验证码");
         return
       } 
-       else if (this.InvitationCode=='') {
-        this.$toast("请输入邀请码");
-        return
-      } 
-
+   
   
       
       this.httpClient.request(this.projectConfig.WX_REGISTER, {
@@ -103,18 +131,24 @@ export default {
         userName: this.userName,
         userPhone: this.userPhone,
         verificationCode: this.verification,
-        referralCode: this.InvitationCode,
-        openId:this.openId,
+        referralCode: this.referralCode,
+        openId:this.$route.query.openid,
         accessToken:this.accessToken,
 
       },'post')
         .then(res => {
           if(res.returnObject){
             this.$toast("注册成功");
+            console.log(this.$route.query.openid)
+          
             localStorage.setItem('userInfo',JSON.stringify(res.returnObject))
             setTimeout(function(){
-              self.$router.push('/')
-            },2000)
+                self.$router.push( {name: 'home',query:{
+                  openid:self.$route.query.openid
+                }
+              })
+
+            },1000)
           }
         
       }).catch(function(err) {
@@ -127,7 +161,7 @@ export default {
 
 
     sendcode() {
-      var reg = 11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/;
+      let reg = /^1[3456789]\d{9}$/
       if (this.userPhone == '') {
         this.$toast("请输入手机号码");
         return

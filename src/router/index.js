@@ -15,7 +15,7 @@ const router = new Router({
       path: '/',
       name: 'home',
       meta: {
-        title: '聚点商城',
+        title: '聚点推荐',
         keepAlive: true,
         keepAlive: true,
         requireArth: true
@@ -47,33 +47,46 @@ const router = new Router({
 
 //进行登录拦截
 router.beforeEach((to, from, next) => {
+  console.log(to)
   store.commit('showLoading')
-  // if(to.meta.requireArth){
-  //   var userInfo = localStorage.getItem('userInfo');
-  //   if(userInfo){ 
-  //       next();
-  //   } else {
-  //     if(!to.query.openid){
-  //       getWxLogin.request(projectConfig.WECHAT_LOGIN,'','get')
-  //       getWxLogin.request(projectConfig.WECHAT_LOGIN,'','get')
-  //     }else{
-  //       // 获取用户信息
-  //       httpClient.request(projectConfig.GET_USERINFO,{openid:to.query.openid},'post')
-  //       .then(res => {
-  //         if(res.returnObject){
-  //           Toast("登录成功");
-  //           localStorage.setItem('userInfo',JSON.stringify(res.returnObject))
-  //           setTimeout(function(){
-  //             next()
-  //           },1000)
-  //         }
-  //       })
-  //     }
-  //   }
-  // }else{
-  //   next();
-  // }
-  next()
+  if(to.query.referralCode){
+    sessionStorage.setItem('referralCode',to.query.referralCode);
+  }
+
+  if(to.name=='register'){
+    next()
+  }
+
+  if(to.meta.requireArth){
+    var userInfo = localStorage.getItem('userInfo')?localStorage.getItem('userInfo'):'';
+    if(userInfo){ 
+        next();
+    } else {
+    
+      if(!to.query.loginId){
+       
+        getWxLogin.request(projectConfig.WECHAT_LOGIN,'','get')
+      }else{
+      
+        // 获取用户信息
+        httpClient.request(projectConfig.GET_USERINFO,{openid:to.query.loginId},'post')
+        .then(res => {
+          if(res.returnObject){
+            Toast("登录成功");
+            localStorage.setItem('userInfo',JSON.stringify(res.returnObject))
+            setTimeout(function(){
+              next()
+            },1000)
+          }
+        })
+        
+      }
+    }
+  }else{
+    console.log(5);
+    next();
+  }
+  // next()
 })
 router.afterEach((to, from) => {
   store.commit('hideLoading')

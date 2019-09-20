@@ -11,14 +11,9 @@ function getJSSDK(callback) {
   
   // timestamp
   let createTimeStamp = parseInt(new Date().getTime() / 1000) + '';
-  
-  // let url =  location.href.split('#')[0]
-  // let url = window.location.href;
   let url = location.href.split('#')[0];
-//  alert(location.href.split('#')[0]);
 
   let data ={
-    // url:' http://r38227.natappfree.cc/', 
     url:encodeURIComponent(url), 
     timestamp: createTimeStamp,
     nonceStr: createNonceStr
@@ -29,7 +24,7 @@ function getJSSDK(callback) {
 
     wx.config({
       debug: false, // 开启调试模式
-      appId: 'wx9b060f707e119c4f', // 必填，公众号的唯一标识
+      appId: 'wx8cfe1143c89bbd9f', // 必填，公众号的唯一标识
       timestamp: datas.timestamp, // 必填，生成签名的时间戳
       nonceStr: datas.nonceStr, // 必填，生成签名的随机串
       signature: datas.signature, // 必填，签名
@@ -49,7 +44,7 @@ function getJSSDK(callback) {
 }
 
 function shareMenu(opstion) {
-  // console.log('opstion====',opstion);
+  console.log('opstion====',opstion);
   // 2.1分享给朋友
   wx.onMenuShareAppMessage({
     title: opstion.title,
@@ -60,6 +55,7 @@ function shareMenu(opstion) {
     success: function success(res) {
       console.log('已分享');
       opstion.success()
+      // alert(JSON.stringify(opstion))
     },
     cancel: function cancel(res) {
       console.log('已取消');

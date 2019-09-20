@@ -66,26 +66,48 @@ export default {
     };
   },
   created(){
+    this.sdk.getJSSDK(this.wxRegCallback)
     if(localStorage.getItem('userInfo')){
         this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
     }
-    console.log(this.userInfo);
+
+    console.log('referralCode='+this.userInfo.invitationCode)
+    
+    //  let url = window.location.href
+    // let param = 'referralCode='+this.userInfo.referralCode
+    
+    //   if(url.indexOf("?") != -1){
+    //     url = url.split("?")[0]+'?'+param
+    //   }else{
+    //     url =url+'?'+param
+    //   }
+
+    //   console.log(url);
+
 
   },
   mounted() {
-
     this.getCarousel();
     this.getPageList();
-    this.sdk.getJSSDK(this.wxRegCallback)
   },
   methods: {
     wxRegCallback() {
+       let url = window.location.href
+       let param = 'referralCode='+this.userInfo.invitationCode
+
+      if(url.indexOf("?") != -1){
+       url = url.split("?")[0]+'?'+param
+      }else{
+        url =url+'?'+param
+      }
+      
+      console.log(url);
+     
       let opstion = {
-        title: "分享", //分享标题
-        desc: "个人资料", //分享内容
-        linkurl: "http://127.0.0.1:999/?home=1", //分享链接
-        img:
-          "https://shopstatic.vivo.com.cn/vivoshop/commodity/20180418/20180418104131830678_original.jpg", //分享内容显示的图片
+        title: "聚点推荐", //分享标题
+        desc: "分享一个超高收益的项目，没时间了，快抢", //分享内容
+        linkurl: url, //分享链接
+        img:"http://jtapi.manytrader.net/preViewIndustry/logo.png", //分享内容显示的图片
         success: function() {
           console.log("分享成功");
         },
@@ -108,17 +130,17 @@ export default {
    
     //记录用户信息
     getRecord(productUrl,productId){
-        let param = {
-          userName:this.userInfo.userName,
-          userCode:this.userInfo.userCode,
-          userPhone:this.userInfo.userPhone,
-          productId:productId,
-          referralCode:this.userInfo.referralCode,
-        }
-         this.httpClient.request(this.projectConfig.SHARE_RECORDSHAREMESS, param,'post')
-        .then(res => {
-         window.location.href = productUrl;
-        })
+      let param = {
+        userName:this.userInfo.userName,
+        userCode:this.userInfo.userCode,
+        userPhone:this.userInfo.userPhone,
+        productId:productId,
+        referralCode:this.userInfo.referralCode,
+      }
+        this.httpClient.request(this.projectConfig.SHARE_RECORDSHAREMESS, param,'post')
+      .then(res => {
+          window.location.href = productUrl;
+      })
 
     },
 

@@ -3,10 +3,10 @@
 
 ## 介绍
 
-    聚点商城信公众号项目
+    聚点推荐信公众号项目
 
 ### 说明
-　　聚点商城微信公众号
+　　聚点推荐微信公众号
 　　git:  XX
 
 ### 相关技术：
@@ -67,7 +67,7 @@ npm install --registry=https://registry.npm.taobao.org
 ## 连接开发服务器
 npm run dev dev
 ## 连接生产服务器
-npm run dev AIO_WX
+npm run dev prod
 ## 连接测试服务器
 npm run dev test
 
@@ -76,7 +76,7 @@ npm run dev test
 ## 打包发布测试
 npm run build dev
 ## 打包发布生产
-npm run build AIO_WX
+npm run build prod
 ## 打包发布调试模式
 npm run build test
 ```

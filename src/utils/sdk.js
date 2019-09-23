@@ -3,16 +3,12 @@ import { httpClient } from '@/utils/httpClient'
 import { projectConfig } from '@/utils/projectConfig'
 const jsApiList = ['onMenuShareAppMessage', 'onMenuShareTimeline', 'onMenuShareQQ', 'onMenuShareWeibo']
 
-
 function getJSSDK(callback) {
-
   //获取随机串
   let createNonceStr = Math.random().toString(36).substr(2, 15);
-  
   // timestamp
   let createTimeStamp = parseInt(new Date().getTime() / 1000) + '';
   let url = location.href.split('#')[0];
-
   let data ={
     url:encodeURIComponent(url), 
     timestamp: createTimeStamp,
@@ -21,7 +17,6 @@ function getJSSDK(callback) {
   httpClient.request(projectConfig.SHARE_GETSIGNATURE , data, 'post').then(res => {
     if(!res) return;
     let datas = res.returnObject;
-
     wx.config({
       debug: false, // 开启调试模式
       appId: 'wx8cfe1143c89bbd9f', // 必填，公众号的唯一标识
@@ -30,8 +25,6 @@ function getJSSDK(callback) {
       signature: datas.signature, // 必填，签名
       jsApiList: jsApiList // 必填，需要使用的JS接口列表
     })
-    
-
     wx.ready(function () {
       if (callback) {
         callback()
@@ -55,15 +48,12 @@ function shareMenu(opstion) {
     success: function success(res) {
       console.log('已分享');
       opstion.success()
-      // alert(JSON.stringify(opstion))
     },
     cancel: function cancel(res) {
       console.log('已取消');
-
     },
     fail: function fail(res) {
       opstion.error('分享错误')
-      // alert(JSON.stringify(res));
     }
   });
   // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
@@ -72,18 +62,14 @@ function shareMenu(opstion) {
     link: opstion.linkurl,
     imgUrl: opstion.img,
     trigger: function trigger(res) {
-      // alert('用户点击分享到朋友圈');
     },
     success: function success(res) {
       opstion.success()
-      // alert('已分享');
     },
     cancel: function cancel(res) {
-      // alert('已取消');
     },
     fail: function fail(res) {
       opstion.error('分享错误')
-      // alert(JSON.stringify(res));
     }
   });
   // 2.3 监听“分享到QQ”按钮点击、自定义分享内容及分享结果接口
@@ -93,19 +79,14 @@ function shareMenu(opstion) {
     link: opstion.linkurl,
     imgUrl: opstion.img,
     trigger: function trigger(res) {
-      // alert('用户点击分享到QQ');
     },
     complete: function complete(res) {
-      // alert(JSON.stringify(res));
     },
     success: function success(res) {
-      // alert('已分享');
     },
     cancel: function cancel(res) {
-      // alert('已取消');
     },
     fail: function fail(res) {
-      // alert(JSON.stringify(res));
     }
   });
   // 2.4 监听“分享到微博”按钮点击、自定义分享内容及分享结果接口
@@ -115,19 +96,14 @@ function shareMenu(opstion) {
     link: opstion.linkurl,
     imgUrl: opstion.img,
     trigger: function trigger(res) {
-      // alert('用户点击分享到微博');
     },
     complete: function complete(res) {
-      // alert(JSON.stringify(res));
     },
     success: function success(res) {
-      // alert('已分享');
     },
     cancel: function cancel(res) {
-      // alert('已取消');
     },
     fail: function fail(res) {
-      // alert(JSON.stringify(res));
     }
   });
 }

@@ -13,16 +13,14 @@ class projectConfig {
   static API_HOST_NAME = process.env.HOST_NAME;
   
   // 项目接口 =========================.start
-  static WECHAT_LOGIN = 'wechat/wxLogin';
-  static GET_USERINFO = 'wechat/getUserInfo';
-  static WX_REGISTER = 'wechat/register';
-  static GET_CAROUSEL = 'product/queryCarousel';
-  static GET_HOT_RECOMMEND = 'product/queryHotRecommend';
-  static GET_VERIFICATIONCODE = 'user/verificationCode';
-  static SHARE_GETSIGNATURE = 'share/getSignature';
-  static SHARE_RECORDSHAREMESS = 'share/recordShareMess';
-
-
+  static WECHAT_LOGIN = 'wechat/wxLogin';//微信登录
+  static GET_USERINFO = 'wechat/getUserInfo';//获取用户信息
+  static WX_REGISTER = 'wechat/register';//用户注册
+  static GET_CAROUSEL = 'product/queryCarousel';//首页轮播图
+  static GET_HOT_RECOMMEND = 'product/queryHotRecommend';//首页热门推荐
+  static GET_VERIFICATIONCODE = 'user/verificationCode';//验证码
+  static SHARE_GETSIGNATURE = 'share/getSignature';//sdk签名
+  static SHARE_RECORDSHAREMESS = 'share/recordShareMess';//记录用户信息
 }
 
 export {

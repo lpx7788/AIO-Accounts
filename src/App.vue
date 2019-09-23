@@ -22,14 +22,7 @@ export default {
   components: {
     Loading,
 	},
-  mounted(){
 
-  },
-  watch: {
-    '$route' (to, from) {
-      // console.log(to);
-    }
-  }
 }
 </script>
 

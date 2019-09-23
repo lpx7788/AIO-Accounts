@@ -15,37 +15,20 @@ const service = axios.create({
 
 // request拦截器
 service.interceptors.request.use(config => {
-  // 获得请求的URL何请求的方法
-  // const requestUrl = config.url
-
-  // 请求url上面加上时间戳
-  // if (requestUrl.indexOf('?') === -1 && requestUrl.lastIndexOf('&') === -1) {
-  //   config.url = requestUrl + '?timestamp=' + new Date().getTime()
-  // } else if (requestUrl.lastIndexOf('&') !== -1) {
-  //   config.url = requestUrl + 'timestamp=' + new Date().getTime()
-  // } else {s
-  //   config.url = requestUrl + '&timestamp=+' + new Date().getTime()
-  // }
-
   return config
 }, error => {
-  // Do something with request error
   Promise.reject(error)
 })
 
 // response,服务器端返回拦截器
 service.interceptors.response.use(
   response => {
-    
-    /**
-     * code为非200是抛错 可结合自己业务进行修改
-     */
+
     if (response.headers['content-type'].indexOf('text/html') !== -1) {
       return response.data
     }
     // Toast('提示内容');
     let res = response.data
-
     if (res.errorCode === projectConfig.RESPONSE_CODE_ERROR_SERVER_ERROR) {
       if(_message){
         Toast(_message);
@@ -61,14 +44,11 @@ service.interceptors.response.use(
       }
       return response.data
     }
-
-    // 全局返回状态码拦截.end
   },
   error => {
     if(error.message){
       Toast(error.message);
     }
-   
     return Promise.reject(error)
   }
 )

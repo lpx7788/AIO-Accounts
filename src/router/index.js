@@ -72,21 +72,17 @@ router.beforeEach((to, from, next) => {
         httpClient.request(projectConfig.GET_USERINFO,{openid:to.query.loginId},'post')
         .then(res => {
           if(res.returnObject){
-            Toast("登录成功");
             localStorage.setItem('userInfo',JSON.stringify(res.returnObject))
-            setTimeout(function(){
-              next()
-            },1000)
+            Toast("登录成功");
+            next()
           }
         })
         
       }
     }
   }else{
-    console.log(5);
     next();
   }
-  // next()
 })
 router.afterEach((to, from) => {
   store.commit('hideLoading')

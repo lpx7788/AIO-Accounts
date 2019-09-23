@@ -2,7 +2,6 @@
   <div class="registerPage">
     <div class="registerPage_body">
         <div class="registerPage-cell-group">
- 
         <van-cell-group>
           <van-field
           v-model="userName" placeholder="请输入姓名" 
@@ -60,50 +59,37 @@ export default {
     };
   },
   created(){
- 
     this.accessToken=this.$route.query.accessToken
-  
     this.referralCode = sessionStorage.getItem('referralCode')!=='null'&&sessionStorage.getItem('referralCode')!==null?sessionStorage.getItem('referralCode'):''
     this.sdk.getJSSDK(this.wxRegCallback)
     if(localStorage.getItem('userInfo')){
         this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
     }      
   },
-
-  mounted() {
-    
-  },
   methods:{
      wxRegCallback() {
        let url = window.location.href
        let param = 'referralCode='+this.userInfo.invitationCode
-
       if(url.indexOf("?") != -1){
         url = url.split("?")[0]+'?'+param
       }else{
         url =url+'?'+param
       }
-      
-      console.log(url);
-     
       let opstion = {
         title: "聚点推荐", //分享标题
         desc: "分享一个超高收益的项目，没时间了，快抢", //分享内容
         linkurl: url, //分享链接
         img:"http://jtapi.manytrader.net/preViewIndustry/logo.png", //分享内容显示的图片
         success: function() {
-          console.log("分享成功");
         },
         error: function() {
-          console.log("分享失败");
         }
       };
       this.sdk.shareMenu(opstion);
     },
     comfirmClick(){
       let self = this;
-    //  var reg = 11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/;
-    let reg = /^1[3456789]\d{9}$/
+      let reg = /^1[3456789]\d{9}$/
       if (this.userName == '') {
         this.$toast("请输入用户名");
         return
@@ -119,9 +105,6 @@ export default {
         this.$toast("请输入验证码");
         return
       } 
-   
-  
-      
       this.httpClient.request(this.projectConfig.WX_REGISTER, {
         // openId	是	string	openId
         // userName	是	string	用户名
@@ -134,31 +117,19 @@ export default {
         referralCode: this.referralCode,
         openId:this.$route.query.openid,
         accessToken:this.accessToken,
-
       },'post')
         .then(res => {
           if(res.returnObject){
-            this.$toast("注册成功");
-            console.log(this.$route.query.openid)
-          
             localStorage.setItem('userInfo',JSON.stringify(res.returnObject))
-            setTimeout(function(){
-                self.$router.push( {name: 'home',query:{
-                  openid:self.$route.query.openid
-                }
-              })
-
-            },1000)
+            this.$toast("注册成功");
+            self.$router.push( {name: 'home',query:{openid:self.$route.query.openid}})
           }
-        
       }).catch(function(err) {
         this.time = 0;
         this.btntxt = "获取验证码";
         this.disabled = false;
-        console.log(err);
       });
     },
-
 
     sendcode() {
       let reg = /^1[3456789]\d{9}$/
@@ -184,7 +155,6 @@ export default {
         this.btntxt = "获取验证码";
         this.disabled = false;
       });
-
 	},
 	//验证码的倒计时
 	timer() {
@@ -198,8 +168,6 @@ export default {
 			this.disabled = false;
 		}
 	},
-
-
   }
 };
 </script>
@@ -213,7 +181,6 @@ export default {
         height: 88px;
         line-height: 88px;
       }
-  
       padding: 0 30px;
       margin-top: 60px;
     }

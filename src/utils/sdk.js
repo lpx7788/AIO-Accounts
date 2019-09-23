@@ -37,7 +37,6 @@ function getJSSDK(callback) {
 }
 
 function shareMenu(opstion) {
-  console.log('opstion====',opstion);
   // 2.1分享给朋友
   wx.onMenuShareAppMessage({
     title: opstion.title,
@@ -46,14 +45,11 @@ function shareMenu(opstion) {
     imgUrl: opstion.img,
     trigger: function trigger(res) { },
     success: function success(res) {
-      console.log('已分享');
       opstion.success()
     },
     cancel: function cancel(res) {
-      console.log('已取消');
     },
     fail: function fail(res) {
-      opstion.error('分享错误')
     }
   });
   // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
@@ -108,10 +104,7 @@ function shareMenu(opstion) {
   });
 }
 
-
-
 export default {
-  // 获取JSSDK
   getJSSDK: getJSSDK,
   shareMenu: shareMenu
 }

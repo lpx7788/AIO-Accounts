@@ -1,7 +1,5 @@
 <template>
-
   <div class="homePage textC">
-    
     <van-pull-refresh class="content_body" v-model="isLoading" @refresh="onRefresh">
       <van-swipe :autoplay="2000" indicator-color="white">
         <van-swipe-item v-for="(item, index) in CarouselList" :key="index">
@@ -20,10 +18,15 @@
           v-model="dataListLoading"
           :offset="0"
           :finished="dataListFinished"
-          finished-text="没有更多了"
+          :finished-text="dataList.length>=5?'没有更多了':''"
           @load="onLoadList"
         >
-          <div class="hot_list_item" v-for="item in dataList" :key="item.id" @click="toDetail(item.productUrl,item.id)">
+          <div
+            class="hot_list_item"
+            v-for="item in dataList"
+            :key="item.id"
+            @click="toDetail(item.productUrl,item.id)"
+          >
             <p class="hot_list_item_title">
               <span>{{item.productDynamic}}</span>
             </p>
@@ -62,20 +65,14 @@ export default {
         pageSize: "10",
         totalPage: 1
       },
-      userInfo:{}
+      userInfo: {}
     };
   },
-  created(){
-    this.sdk.getJSSDK(this.wxRegCallback)
-    if(localStorage.getItem('userInfo')){
-        this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+  created() {
+    this.sdk.getJSSDK(this.wxRegCallback);
+    if (localStorage.getItem("userInfo")) {
+      this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
     }
-
-    console.log('referralCode='+this.userInfo.invitationCode)
-    
-  
-
-
   },
   mounted() {
     this.getCarousel();
@@ -83,105 +80,102 @@ export default {
   },
   methods: {
     wxRegCallback() {
-       let url = window.location.href
-       let param = 'referralCode='+this.userInfo.invitationCode
-
-      if(url.indexOf("?") != -1){
-       url = url.split("?")[0]+'?'+param
-      }else{
-        url =url+'?'+param
+      let url = window.location.href;
+      let param = "referralCode=" + this.userInfo.invitationCode;
+      if (url.indexOf("?") != -1) {
+        url = url.split("?")[0] + "?" + param;
+      } else {
+        url = url + "?" + param;
       }
-      
-      console.log(url);
-     
       let opstion = {
         title: "聚点推荐", //分享标题
         desc: "分享一个超高收益的项目，没时间了，快抢", //分享内容
         linkurl: url, //分享链接
-        img:"http://jtapi.manytrader.net/preViewIndustry/logo.png", //分享内容显示的图片
-        success: function() {
-          console.log("分享成功");
-        },
-        error: function() {
-          console.log("分享失败");
-        }
+        img: "http://jtapi.manytrader.net/preViewIndustry/logo.png", //分享内容显示的图片
+        success: function() {},
+        error: function() {}
       };
       this.sdk.shareMenu(opstion);
     },
 
     // 跳转列表详情
-    toDetail(productUrl,productId) {
-      this.getRecord(productUrl,productId)
+    toDetail(productUrl, productId) {
+      this.getRecord(productUrl, productId);
     },
-    
-    //跳转轮播图详情
-    toSwiperImgDetail(productUrl,productId) {
-      this.getRecord(productUrl,productId)
-    },
-   
-    //记录用户信息
-    getRecord(productUrl,productId){
-      let param = {
-        userName:this.userInfo.userName,
-        userCode:this.userInfo.userCode,
-        userPhone:this.userInfo.userPhone,
-        productId:productId,
-        referralCode:this.userInfo.referralCode,
-      }
-        this.httpClient.request(this.projectConfig.SHARE_RECORDSHAREMESS, param,'post')
-      .then(res => {
-          window.location.href = productUrl;
-      })
 
+    //跳转轮播图详情
+    toSwiperImgDetail(productUrl, productId) {
+      this.getRecord(productUrl, productId);
+    },
+
+    //记录用户信息
+    getRecord(productUrl, productId) {
+      let param = {
+        userName: this.userInfo.userName,
+        userCode: this.userInfo.userCode,
+        userPhone: this.userInfo.userPhone,
+        productId: productId,
+        referralCode: this.userInfo.referralCode
+      };
+      this.httpClient
+        .request(this.projectConfig.SHARE_RECORDSHAREMESS, param, "post")
+        .then(res => {
+          window.location.href = productUrl;
+        });
     },
 
     onRefresh() {
-        setTimeout(() => {
-          this.$toast('刷新成功');
-          this.isLoading = false;
-        }, 500);
-        this.pageIndex = 1
-        this.dataListFinished = false // 不写这句会导致你上拉到底过后在下拉刷新将不能触发下拉加载事件
-        this.getPageList() // 加载数据
-      },
-      onLoadList() {
-        if(this.totalPage&&this.totalPage>this.parameter.pageNum *his.parameter.pageSize){
-          this.getPageList()
-          }// 加载数据
-      },
-
-     //获取列表信息列表
-     getPageList () {
-         let self = this;
-         this.dataListLoading = true
-         const param = {
-          // pageSize:this.parameter.pageSize,
-          // pageNum:this.parameter.pageNum,
-        }
-        this.httpClient.request(this.projectConfig.GET_HOT_RECOMMEND, param,'post')
-        .then(res => {
-
-          self.dataList = self.dataList.concat(res.returnObject)
-          this.dataListLoading = false
-          this.parameter.pageNum ++
-          this.totalPage = res.total
-         
-          if(self.dataList.length == this.totalPage||res.returnObject.length===0|| !this.totalPage){
-            self.dataListFinished = true
-          }
-        
-        })
+      setTimeout(() => {
+        this.$toast("刷新成功");
+        this.isLoading = false;
+      }, 500);
+      this.pageIndex = 1;
+      this.dataListFinished = false; // 不写这句会导致你上拉到底过后在下拉刷新将不能触发下拉加载事件
+      this.dataList = [];
+      this.getPageList(); // 加载数据
     },
-    
+    onLoadList() {
+      if (
+        this.totalPage &&
+        this.totalPage > this.parameter.pageNum * his.parameter.pageSize
+      ) {
+        this.getPageList();
+      } // 加载数据
+    },
+
+    //获取列表信息列表
+    getPageList() {
+      let self = this;
+      this.dataListLoading = true;
+      const param = {
+        // pageSize:this.parameter.pageSize,
+        // pageNum:this.parameter.pageNum,
+      };
+      this.httpClient
+        .request(this.projectConfig.GET_HOT_RECOMMEND, param, "post")
+        .then(res => {
+          self.dataList = self.dataList.concat(res.returnObject);
+          this.dataListLoading = false;
+          this.parameter.pageNum++;
+          this.totalPage = res.total;
+          if (
+            self.dataList.length == this.totalPage ||
+            res.returnObject.length === 0 ||
+            !this.totalPage
+          ) {
+            self.dataListFinished = true;
+          }
+        });
+    },
+
     //获取轮播图信息列表
     getCarousel() {
       this.httpClient
         .request(this.projectConfig.GET_CAROUSEL, {}, "post")
         .then(res => {
           this.CarouselList = res.returnObject;
-      });
-    },
-
+        });
+    }
   }
 };
 </script>

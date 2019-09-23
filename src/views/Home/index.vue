@@ -73,16 +73,7 @@ export default {
 
     console.log('referralCode='+this.userInfo.invitationCode)
     
-    //  let url = window.location.href
-    // let param = 'referralCode='+this.userInfo.referralCode
-    
-    //   if(url.indexOf("?") != -1){
-    //     url = url.split("?")[0]+'?'+param
-    //   }else{
-    //     url =url+'?'+param
-    //   }
-
-    //   console.log(url);
+  
 
 
   },

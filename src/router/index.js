@@ -47,7 +47,7 @@ const router = new Router({
 
 //进行登录拦截
 router.beforeEach((to, from, next) => {
-  console.log(to)
+
   store.commit('showLoading')
   if(to.query.referralCode){
     sessionStorage.setItem('referralCode',to.query.referralCode);

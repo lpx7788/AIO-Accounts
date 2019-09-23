@@ -7,8 +7,8 @@
          <p class="phone">{{userInfo.userPhone}}</p>
       </div>
       <div class="minePage_referral">
-        <span class="code_text">推荐码</span>
-        <span>{{userInfo.referralCode}}</span>
+        <span class="code_text">邀请码</span>
+        <span>{{userInfo.invitationCode}}</span>
       </div>
       <div class="minePage_btn"> <van-button class="recommend_btn"  type="info" size="large"  @click="show = true">推荐给好友</van-button></div>
       <div class="overlay" v-if="show">

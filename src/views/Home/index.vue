@@ -70,12 +70,6 @@ export default {
     if(localStorage.getItem('userInfo')){
         this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
     }
-
-    console.log('referralCode='+this.userInfo.invitationCode)
-    
-  
-
-
   },
   mounted() {
     this.getCarousel();
@@ -91,8 +85,6 @@ export default {
       }else{
         url =url+'?'+param
       }
-      
-      console.log(url);
      
       let opstion = {
         title: "聚点推荐", //分享标题
@@ -142,6 +134,7 @@ export default {
         }, 500);
         this.pageIndex = 1
         this.dataListFinished = false // 不写这句会导致你上拉到底过后在下拉刷新将不能触发下拉加载事件
+        this.dataList = []
         this.getPageList() // 加载数据
       },
       onLoadList() {

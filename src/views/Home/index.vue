@@ -87,10 +87,6 @@ export default {
       } else {
         url = url + "?" + param;
       }
-<<<<<<< HEAD
-=======
-     
->>>>>>> 422b4fe212101cde350bf1d4ed2bf882fde05aef
       let opstion = {
         title: "聚点推荐", //分享标题
         desc: "分享一个超高收益的项目，没时间了，快抢", //分享内容
@@ -119,12 +115,13 @@ export default {
         userCode: this.userInfo.userCode,
         userPhone: this.userInfo.userPhone,
         productId: productId,
-        referralCode: this.userInfo.referralCode
+        referralCode: this.userInfo.referralCode,
+        logo:this.userInfo.headimgurl
       };
       this.httpClient
         .request(this.projectConfig.SHARE_RECORDSHAREMESS, param, "post")
         .then(res => {
-          window.location.href = productUrl;
+          window.location.href = res.returnObject;
         });
     },
 

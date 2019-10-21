@@ -7,7 +7,7 @@
 
 ### 说明
 　　聚点推荐微信公众号
-　　git:  暂无
+　　git:  http://112.74.42.194:8099/ZhongKa/AioJtFrontEnd.git
 
 ### 相关技术：
 
@@ -30,26 +30,26 @@
 	5. webpack: http://www.css88.com/doc/webpack2/guides/development/
 	6. es6: http://es6.ruanyifeng.com/
     7. postcss-pxtorem: 注意引入了三方UI，也会被转化。可以使用selectorBlackList字段来过滤。如果个别地方不想转化px。可以简单的使用大写的 PX 或 Px 。
-    8.vuex: https://vuex.vuejs.org/zh/guide/state.html
-    9.sdk: https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html(微信开发者文档)
+    8. vuex: https://vuex.vuejs.org/zh/guide/state.html
+    9. sdk: https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html(微信开发者文档)
 
 
     vue 开源项目插件库汇总
     https://segmentfault.com/p/1210000008583242/read?from=timeline
 
 ### 项目目录结构
-    ├── build                      // 构建相关
-    ├── config                     // 配置相关
-    ├── src                        // 源代码
-    │   ├── assets                 // 主题 字体 样式等静态资源
-    │   ├── components             // 公共组件
+    ├── build                      //构建相关
+    ├── config                     //配置相关
+    ├── src                        //源代码
+    │   ├── assets                 //主题 字体 样式等静态资源
+    │   ├── components             //公共组件
     │   │   ├──Footer              //底部菜单                 
     |   |   ├──Loadding            //加载组件
-    │   ├── router                 // 路由
-    │   ├── utils                  // 全局公用方法
+    │   ├── router                 //路由
+    │   ├── utils                  //全局公用方法
     |   |   ├──Footer              //底部菜单                 
     |   |   ├──Loadding            //加载组件
-    │   ├── views                  // vue文件页面目录
+    │   ├── views                  //vue文件页面目录
     |   |   ├──authorization       //登录流程js    
     |   |   ├──common              //项目攻关js   
     |   |   ├──fetch               //请求拦截处理 
@@ -57,13 +57,13 @@
     |   |   ├──projectConfig       //请求地址管理 
     |   |   ├──rem                 //rem适配文件
     |   |   ├──sdk                 //分享sdk文件
-    │   ├── App.vue                // 入口页面
-    │   └── main.js                // 入口 加载组件 初始化等
-    ├── static                     // 第三方不打包资源
-    ├── .babelrc                   // babel-loader 配置
-    ├── favicon.ico                // favicon图标
-    ├── index.html                 // html模板
-    └── package.json               // 依赖配置文件package.json
+    │   ├── App.vue                //入口页面
+    │   └── main.js                //入口 加载组件 初始化等
+    ├── static                     //第三方不打包资源
+    ├── .babelrc                   //babel-loader 配置
+    ├── favicon.ico                //favicon图标
+    ├── index.html                 //html模板
+    └── package.json               //依赖配置文件package.json
 
 ## Build Setup
 
